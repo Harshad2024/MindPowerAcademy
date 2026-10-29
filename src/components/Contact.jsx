@@ -4,12 +4,12 @@ import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiAlertCircle } from 
 import emailjs from '@emailjs/browser';
 
 // ──────────────────────────────────────────────
-// 🔧 Replace these with your actual EmailJS IDs
-// (free at https://www.emailjs.com)
+// 🔧 EmailJS Service Configuration
+// Reads from Vite environment variables (or Vercel environment variables)
 // ──────────────────────────────────────────────
-const EMAILJS_SERVICE_ID  = 'service_XXXXXXX';
-const EMAILJS_TEMPLATE_ID = 'template_XXXXXXX';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_mindpower';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_mindpower';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
 
 export default function Contact() {
   const formRef = useRef(null);
@@ -22,12 +22,16 @@ export default function Contact() {
     e.preventDefault();
     setStatus('loading');
     try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
-      );
+      if (EMAILJS_PUBLIC_KEY) {
+        await emailjs.sendForm(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          EMAILJS_PUBLIC_KEY
+        );
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
       setStatus('success');
       setForm({ name: '', email: '', phone: '', course: '', message: '' });
     } catch (err) {
@@ -39,7 +43,7 @@ export default function Contact() {
   const info = [
     { icon: <FiPhone />, label: 'Phone', value: '+91 98448 56288', href: 'tel:+919844856288' },
     { icon: <FiMail />, label: 'Email', value: 'mindpoweracademy77@gmail.com', href: 'mailto:mindpoweracademy77@gmail.com' },
-    { icon: <FiMapPin />, label: 'Location', value: 'Bengaluru, Karnataka, India', href: 'https://maps.google.com/?q=Mind+Power+Academy+Bengaluru' },
+    { icon: <FiMapPin />, label: 'Location', value: 'Vidya Nagar, Rajnagar, Hubballi', href: 'https://maps.app.goo.gl/FnsDkEs4osP6niS67' },
   ];
 
   return (

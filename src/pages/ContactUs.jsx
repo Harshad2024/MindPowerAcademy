@@ -15,12 +15,12 @@ import { FaHeadset, FaBookReader, FaLightbulb } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 // ──────────────────────────────────────────────
-// 🔧 EmailJS Service Configuration (Free tier)
-// Replace with your keys at https://www.emailjs.com
+// 🔧 EmailJS Service Configuration
+// Reads from Vite environment variables (or Vercel environment variables)
 // ──────────────────────────────────────────────
-const EMAILJS_SERVICE_ID = 'service_mindpower';
-const EMAILJS_TEMPLATE_ID = 'template_mindpower';
-const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_mindpower';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_mindpower';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
 
 const COURSE_OPTIONS = [
   'Select Course',
@@ -83,10 +83,7 @@ export default function ContactUs() {
     setStatus('loading');
 
     try {
-      if (
-        EMAILJS_PUBLIC_KEY &&
-        EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY'
-      ) {
+      if (EMAILJS_PUBLIC_KEY) {
         await emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
@@ -99,7 +96,7 @@ export default function ContactUs() {
           EMAILJS_PUBLIC_KEY
         );
       } else {
-        // Mock success fallback for preview
+        // Fallback simulation when keys haven't been configured yet
         await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
@@ -210,10 +207,18 @@ export default function ContactUs() {
               <FaBookReader />
             </div>
             <h3 className="text-xl font-bold mb-4">Address</h3>
-            <p className="text-blue-50 font-medium text-base leading-relaxed">
+            <p className="text-blue-50 font-medium text-base leading-relaxed mb-4">
               No 92, Lokappana Hakkal, near Hanuman Temple, Rajnagar, Vidya Nagar,
               Hubballi, Karnataka 580031
             </p>
+            <a
+              href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs font-semibold bg-white/20 hover:bg-white hover:text-blue-700 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
+            >
+              Get Directions &rarr;
+            </a>
           </motion.div>
 
           {/* Card 3: Email */}
@@ -357,7 +362,7 @@ export default function ContactUs() {
                 📍 Vidya Nagar, Rajnagar, Hubballi, Karnataka 580031
               </span>
               <a
-                href="https://maps.google.com/?q=Mind+Power+Academy+Hubballi"
+                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
                 target="_blank"
                 rel="noreferrer"
                 className="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold"

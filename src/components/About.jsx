@@ -64,32 +64,21 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-lg overflow-hidden card-hover"
+            className="bg-white rounded-3xl shadow-lg overflow-hidden card-hover flex flex-col"
           >
-            <div className="relative min-h-[260px] bg-slate-100">
+            <div className="relative h-96 bg-gradient-to-b from-slate-100 to-slate-200 flex items-center justify-center overflow-hidden">
               <img
-                src="/images/about-bg.jpg"
+                src="/images/umesh-p.png"
                 alt="Umesh S. Phirangi - Founder CEO"
-                className="w-full h-72 object-cover object-top"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
-                }}
+                className="w-full h-full object-cover object-top"
               />
-              <div style={{ display: 'none' }}>
-                <ImagePlaceholder
-                  title="Founder: Umesh .S. Phirangi"
-                  subtitle="Image to be uploaded"
-                  aspectRatio="aspect-[4/3]"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-6 text-white pointer-events-none">
                 <p className="text-xs font-semibold uppercase tracking-wider opacity-90">Founder, CEO</p>
                 <h3 className="text-2xl font-bold text-white">Umesh .S. Phirangi</h3>
               </div>
             </div>
-            <div className="p-6 text-gray-600 text-sm leading-relaxed">
+            <div className="p-6 text-gray-600 text-sm leading-relaxed flex-1">
               A visionary educator and mentor with over two decades of dedicated experience in personality development, handwriting improvement, and mind science. Umesh has transformed thousands of lives through his practical, results-driven teaching methodology.
             </div>
           </motion.div>
@@ -100,32 +89,21 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-lg overflow-hidden card-hover"
+            className="bg-white rounded-3xl shadow-lg overflow-hidden card-hover flex flex-col"
           >
-            <div className="relative min-h-[260px] bg-slate-100">
+            <div className="relative h-96 bg-gradient-to-b from-slate-100 to-slate-200 flex items-center justify-center overflow-hidden">
               <img
-                src="/images/harshad.jpg"
+                src="/images/harshad.jpeg"
                 alt="Harshad U. Phirangi - Co-Founder"
-                className="w-full h-72 object-cover object-top"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
-                }}
+                className="w-full h-full object-contain object-center"
               />
-              <div style={{ display: 'none' }}>
-                <ImagePlaceholder
-                  title="Co-Founder: Harshad .U. Phirangi"
-                  subtitle="Image to be uploaded"
-                  aspectRatio="aspect-[4/3]"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-6 text-white pointer-events-none">
                 <p className="text-xs font-semibold uppercase tracking-wider opacity-90">Co-Founder</p>
                 <h3 className="text-2xl font-bold text-white">Harshad .U. Phirangi</h3>
               </div>
             </div>
-            <div className="p-6 text-gray-600 text-sm leading-relaxed">
+            <div className="p-6 text-gray-600 text-sm leading-relaxed flex-1">
               A dynamic entrepreneur and educator, Harshad brings modern teaching frameworks, digital learning techniques, and creative energy to Mind Power Academy, propelling student confidence and holistic development.
             </div>
           </motion.div>

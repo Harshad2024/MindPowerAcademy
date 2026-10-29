@@ -8,21 +8,21 @@ const courses = [
     tag: 'Transform Your Life',
     title: 'Handwriting Improvement',
     desc: 'Behind every successful person there is a great Writing and Signature. Improve your handwriting with our expert techniques.',
-    img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80',
+    img: '/images/handwriting-improvement-course.png',
     color: '#3B5BDB',
   },
   {
     tag: 'Art in Every Stroke',
     title: 'Calligraphy Course',
     desc: 'Develop the art of beautiful writing with expert guidance. Master various calligraphy styles.',
-    img: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80',
+    img: '/images/calligraphy.png',
     color: '#5C4BC1',
   },
   {
     tag: 'Handwriting Analysis',
     title: 'Graphology Course',
     desc: 'Understand personality traits through handwriting analysis. A fascinating science of self-discovery.',
-    img: '/images/graphology.jpg',
+    img: '/images/Graphology-course.png',
     color: '#2563EB',
   },
   {
@@ -43,7 +43,7 @@ const courses = [
     tag: 'Transform Your Life',
     title: 'English Grammar Course',
     desc: 'Master English Grammar with our expert-guided classes and build strong communication skills.',
-    img: '/images/english-grammar.jpg',
+    img: '/images/english-grammer-course.png',
     color: '#1D4ED8',
   },
   {
@@ -57,7 +57,7 @@ const courses = [
     tag: 'Heal Holistically',
     title: 'Quantum Healing Course',
     desc: 'Learn techniques to promote balance, well-being, and healing through the science of quantum energy.',
-    img: 'https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?w=600&q=80',
+    img: '/images/quantum-healing-course.png',
     color: '#6D28D9',
   },
 ];

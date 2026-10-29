@@ -50,11 +50,11 @@ export default function Navbar() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:opacity-70 transition-opacity"><FaInstagram /></a>
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:opacity-70 transition-opacity"><FaFacebookF /></a>
+            <a href="https://www.instagram.com/mindpower__academy?mdxt=MXg1OW43ZGU3d2pnaA==" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:opacity-70 transition-opacity"><FaInstagram /></a>
+            <a href="https://www.facebook.com/share/1C62iHuPPo/" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:opacity-70 transition-opacity"><FaFacebookF /></a>
             <a href="#contact" onClick={() => handleNavClick('#contact')} aria-label="Location" className="hover:opacity-70 transition-opacity"><FaMapMarkerAlt /></a>
             <a href="https://wa.me/919844856288" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="hover:opacity-70 transition-opacity"><FaWhatsapp /></a>
-            <a href="https://www.youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:opacity-70 transition-opacity"><FaYoutube /></a>
+            <a href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0" target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:opacity-70 transition-opacity"><FaYoutube /></a>
           </div>
         </div>
       </div>

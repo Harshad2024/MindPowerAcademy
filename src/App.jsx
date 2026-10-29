@@ -17,7 +17,12 @@ import Disclaimer from './pages/Disclaimer';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <div className="flex flex-col min-h-screen text-gray-800 bg-white selection:bg-primary selection:text-white">
         <ScrollToTop />
         <Navbar />

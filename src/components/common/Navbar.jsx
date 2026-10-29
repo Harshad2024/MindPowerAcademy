@@ -64,7 +64,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4 text-sm">
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/mindpower__academy?mdxt=MXg1OW43ZGU3d2pnaA=="
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -73,7 +73,7 @@ export default function Navbar() {
               <FaInstagram />
             </a>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/share/1C62iHuPPo/"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
@@ -98,7 +98,7 @@ export default function Navbar() {
               <FaWhatsapp />
             </a>
             <a
-              href="https://www.youtube.com"
+              href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0"
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
