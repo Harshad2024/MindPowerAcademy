@@ -7,9 +7,9 @@ import emailjs from '@emailjs/browser';
 // 🔧 EmailJS Service Configuration
 // Reads from Vite environment variables (or Vercel environment variables)
 // ──────────────────────────────────────────────
-const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_mindpower';
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_mindpower';
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const formRef = useRef(null);
@@ -20,18 +20,23 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error(
+        'EmailJS not configured: set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID and VITE_EMAILJS_PUBLIC_KEY.'
+      );
+      setStatus('error');
+      return;
+    }
+
     setStatus('loading');
     try {
-      if (EMAILJS_PUBLIC_KEY) {
-        await emailjs.sendForm(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          formRef.current,
-          EMAILJS_PUBLIC_KEY
-        );
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 800));
-      }
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
       setStatus('success');
       setForm({ name: '', email: '', phone: '', course: '', message: '' });
     } catch (err) {
