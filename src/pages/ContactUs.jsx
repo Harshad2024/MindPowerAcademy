@@ -18,9 +18,9 @@ import emailjs from '@emailjs/browser';
 // 🔧 EmailJS Service Configuration
 // Reads from Vite environment variables (or Vercel environment variables)
 // ──────────────────────────────────────────────
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_mindpower';
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_mindpower';
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const COURSE_OPTIONS = [
   'Select Course',
@@ -63,6 +63,7 @@ export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    email: '',
     course: 'Select Course',
     message: '',
   });
@@ -80,30 +81,35 @@ export default function ContactUs() {
       return;
     }
 
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error(
+        'EmailJS not configured: set VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID and VITE_EMAILJS_PUBLIC_KEY.'
+      );
+      setStatus('error');
+      return;
+    }
+
     setStatus('loading');
 
     try {
-      if (EMAILJS_PUBLIC_KEY) {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          {
-            name: formData.name,
-            phone: formData.phone,
-            course: formData.course,
-            message: formData.message || 'No additional message provided',
-          },
-          EMAILJS_PUBLIC_KEY
-        );
-      } else {
-        // Fallback simulation when keys haven't been configured yet
-        await new Promise((resolve) => setTimeout(resolve, 800));
-      }
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || 'Not provided',
+          course: formData.course,
+          message: formData.message || 'No additional message provided',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
       setStatus('success');
       setFormData({
         name: '',
         phone: '',
+        email: '',
         course: 'Select Course',
         message: '',
       });
@@ -288,6 +294,17 @@ export default function ContactUs() {
                   onChange={handleChange}
                   placeholder="Full Name *"
                   required
+                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address"
                   className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
                 />
               </div>
