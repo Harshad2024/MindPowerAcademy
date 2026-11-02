@@ -169,8 +169,6 @@ Add the three `VITE_EMAILJS_*` variables under **Project Settings → Environmen
 - No spam protection on the contact form (EmailJS free tier is 200 emails/month)
 - No automated tests or CI
 - No error boundary or dedicated 404 page
-- `src/components/Contact.jsx` and `src/components/Navbar.jsx` are unused legacy files
-- `axios` and `react-scroll` are installed but not used
 
 ---
 
