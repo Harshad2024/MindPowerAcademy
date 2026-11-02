@@ -1,6 +1,13 @@
+import Seo from '../components/common/Seo';
+
 export default function TermsAndConditions() {
   return (
     <div className="min-h-screen bg-slate-50 py-10 sm:py-16 px-4 sm:px-6 font-sans">
+      <Seo
+        title="Terms & Conditions"
+        description="Terms and conditions for enrolling in courses and using the Mind Power Academy website."
+        path="/terms-conditions"
+      />
       <div className="max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-8 md:p-14 shadow-md border border-gray-100">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 sm:mb-4">Terms and Conditions</h1>
         <p className="text-sm text-gray-500 mb-8">Last updated: December 03, 2024</p>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiCheck, FiArrowRight, FiPhone } from 'react-icons/fi';
+import Seo from '../components/common/Seo';
 
 const COURSES = [
   {
@@ -123,6 +124,11 @@ const COURSES = [
 export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <Seo
+        title="Courses"
+        description="Explore eight courses at Mind Power Academy: handwriting improvement, calligraphy, graphology, memory skills, personality development, English grammar, pendulum dowsing and quantum healing."
+        path="/courses"
+      />
       {/* 1. Page Banner */}
       <section className="relative overflow-hidden py-14 sm:py-20 md:py-28 text-white">
         <div className="absolute inset-0 z-0">

@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fi';
 import { FaWhatsapp, FaCamera } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Seo from '../components/common/Seo';
 
 const GALLERY_PHOTOS = [
   {
@@ -145,6 +146,11 @@ export default function PastEvents() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <Seo
+        title="Past Events & Gallery"
+        description="Photos and highlights from Mind Power Academy workshops, seminars and classroom sessions in Hubballi."
+        path="/past-events"
+      />
       {/* ──────────────────────────────────────────────
           1. Hero Banner: Authentic Original Fountain Pen Background
       ────────────────────────────────────────────── */}

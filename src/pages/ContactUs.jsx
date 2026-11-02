@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fi';
 import { FaHeadset, FaBookReader, FaLightbulb } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import Seo from '../components/common/Seo';
 
 // ──────────────────────────────────────────────
 // 🔧 EmailJS Service Configuration
@@ -121,6 +122,11 @@ export default function ContactUs() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <Seo
+        title="Contact Us"
+        description="Contact Mind Power Academy in Hubballi — call +91 98448 56288, email us, get directions, or send an enquiry through the website."
+        path="/contact-us"
+      />
       {/* ──────────────────────────────────────────────
           1. Hero Banner: Dark Blue with Glow Icons
       ────────────────────────────────────────────── */}

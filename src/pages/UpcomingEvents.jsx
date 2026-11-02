@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fi';
 import { FaWhatsapp, FaUserTie, FaGraduationCap } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Seo from '../components/common/Seo';
 
 const UPCOMING_POSTERS = [
   {
@@ -93,6 +94,11 @@ export default function UpcomingEvents() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <Seo
+        title="Upcoming Events & Workshops"
+        description="Upcoming workshops and new batches at Mind Power Academy, Hubballi. View posters, workshop details and register through WhatsApp."
+        path="/upcoming-events"
+      />
       {/* ──────────────────────────────────────────────
           1. Hero Banner: Authentic Original Fountain Pen Background
       ────────────────────────────────────────────── */}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiAward, FiUsers, FiBookOpen, FiStar } from 'react-icons/fi';
 import ImagePlaceholder from '../components/common/ImagePlaceholder';
+import Seo from '../components/common/Seo';
 
 export default function AboutUs() {
   const highlights = [
@@ -13,6 +14,11 @@ export default function AboutUs() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
+      <Seo
+        title="About Us"
+        description="Learn about Mind Power Academy, its founder Umesh S. Phirangi, and two decades of handwriting and personality development training in Hubballi."
+        path="/about-us"
+      />
       {/* Page Banner */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[#071330] via-[#0B2560] to-[#0D1F4D] py-14 sm:py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">

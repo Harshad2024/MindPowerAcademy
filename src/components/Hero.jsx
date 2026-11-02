@@ -21,11 +21,9 @@ export default function Hero() {
           <span className="inline-block py-1 px-3 sm:px-4 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 font-semibold text-[11px] sm:text-xs tracking-wide sm:tracking-wider uppercase mb-4 max-w-full">
             Personality Development & Handwriting Improvement
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-2">
-            Unlock Your True Potential with
-          </h1>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight mb-6 drop-shadow-md">
-            Mind Power Academy
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            <span className="block text-white mb-2">Unlock Your True Potential with</span>
+            <span className="block text-primary drop-shadow-md">Mind Power Academy</span>
           </h1>
           <p className="text-white/90 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-xl leading-relaxed">
             Discover transformative courses designed to enhance your handwriting, boost your confidence, sharpen your memory, and empower you for lifelong success.
