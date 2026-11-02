@@ -124,36 +124,36 @@ export default function ContactUs() {
       {/* ──────────────────────────────────────────────
           1. Hero Banner: Dark Blue with Glow Icons
       ────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#071330] via-[#0B2560] to-[#0D1F4D] py-20 md:py-28 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#071330] via-[#0B2560] to-[#0D1F4D] py-16 md:py-28 text-white">
         {/* Subtle cyber background grid / glow */}
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-          <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
+          <div className="text-center md:text-left">
             <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
               Get In Touch
             </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight">
               Contact Us
             </h1>
-            <p className="mt-4 text-blue-100 max-w-xl text-base md:text-lg">
+            <p className="mt-3 sm:mt-4 text-blue-100 max-w-xl text-sm sm:text-base md:text-lg">
               Have questions about our programs or ready to enroll? Reach out to us
               directly or visit our academy. We are always ready to assist you!
             </p>
           </div>
 
           {/* Glowing Neon Outline Graphic */}
-          <div className="flex items-center gap-6 p-6 rounded-3xl bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm shadow-2xl">
-            <div className="p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-cyan-300 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">
-              <FiMail className="text-4xl md:text-5xl" />
+          <div className="flex items-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-3xl bg-blue-950/40 border border-blue-400/20 backdrop-blur-sm shadow-2xl">
+            <div className="p-3 sm:p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-cyan-300 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">
+              <FiMail className="text-3xl sm:text-4xl md:text-5xl" />
             </div>
-            <div className="p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-blue-300 drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">
-              <FiSmartphone className="text-4xl md:text-5xl" />
+            <div className="p-3 sm:p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-blue-300 drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">
+              <FiSmartphone className="text-3xl sm:text-4xl md:text-5xl" />
             </div>
-            <div className="p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-indigo-300 drop-shadow-[0_0_15px_rgba(129,140,248,0.5)]">
-              <FiMessageSquare className="text-4xl md:text-5xl" />
+            <div className="p-3 sm:p-4 rounded-2xl bg-blue-600/30 border border-blue-400/40 text-indigo-300 drop-shadow-[0_0_15px_rgba(129,140,248,0.5)]">
+              <FiMessageSquare className="text-3xl sm:text-4xl md:text-5xl" />
             </div>
           </div>
         </div>
@@ -162,28 +162,28 @@ export default function ContactUs() {
       {/* ──────────────────────────────────────────────
           2. "Got a Question?" 3 Blue Info Cards
       ────────────────────────────────────────────── */}
-      <section className="py-16 md:py-20 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+      <section className="py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900">
             Got a <span className="text-primary">Question?</span>
           </h2>
-          <p className="text-gray-500 mt-2 text-base">
+          <p className="text-gray-500 mt-2 text-sm sm:text-base">
             Reach out via phone, email, or visit our academy center in Hubballi
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Card 1: Phone */}
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ duration: 0.2 }}
-            className="bg-[#2563EB] text-white rounded-3xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-[#2563EB] text-white rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
           >
-            <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-3xl mb-5 border border-white/20">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-5 border border-white/20">
               <FaHeadset />
             </div>
-            <h3 className="text-xl font-bold mb-4">Phone Number</h3>
-            <div className="space-y-2 text-blue-50 font-medium text-lg">
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Phone Number</h3>
+            <div className="space-y-2 text-blue-50 font-medium text-base sm:text-lg">
               <div>
                 <a
                   href="tel:+919844856288"
@@ -207,13 +207,13 @@ export default function ContactUs() {
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ duration: 0.2 }}
-            className="bg-[#2563EB] text-white rounded-3xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-[#2563EB] text-white rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
           >
-            <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-3xl mb-5 border border-white/20">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-5 border border-white/20">
               <FaBookReader />
             </div>
-            <h3 className="text-xl font-bold mb-4">Address</h3>
-            <p className="text-blue-50 font-medium text-base leading-relaxed mb-4">
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Address</h3>
+            <p className="text-blue-50 font-medium text-sm sm:text-base leading-relaxed mb-4">
               No 92, Lokappana Hakkal, near Hanuman Temple, Rajnagar, Vidya Nagar,
               Hubballi, Karnataka 580031
             </p>
@@ -221,7 +221,7 @@ export default function ContactUs() {
               href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
               target="_blank"
               rel="noreferrer"
-              className="text-xs font-semibold bg-white/20 hover:bg-white hover:text-blue-700 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
+              className="text-xs font-semibold bg-white/20 hover:bg-white hover:text-blue-700 px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
             >
               Get Directions &rarr;
             </a>
@@ -231,15 +231,15 @@ export default function ContactUs() {
           <motion.div
             whileHover={{ y: -6 }}
             transition={{ duration: 0.2 }}
-            className="bg-[#2563EB] text-white rounded-3xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
+            className="bg-[#2563EB] text-white rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow"
           >
-            <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-3xl mb-5 border border-white/20">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-5 border border-white/20">
               <FaLightbulb />
             </div>
-            <h3 className="text-xl font-bold mb-4">Email Address</h3>
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Email Address</h3>
             <a
               href="mailto:mindpoweracademy77@gmail.com"
-              className="text-blue-50 hover:text-white font-medium text-base break-all underline underline-offset-4 transition-colors"
+              className="text-blue-50 hover:text-white font-medium text-sm sm:text-base break-all underline underline-offset-4 transition-colors"
             >
               mindpoweracademy77@gmail.com
             </a>
@@ -250,14 +250,14 @@ export default function ContactUs() {
       {/* ──────────────────────────────────────────────
           3. "Send us a Message" Form + Google Maps
       ────────────────────────────────────────────── */}
-      <section className="py-12 pb-24 max-w-7xl mx-auto px-6">
+      <section className="py-8 sm:py-12 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           {/* Form Column */}
-          <div className="lg:col-span-6 p-8 md:p-12">
-            <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
+          <div className="lg:col-span-6 p-5 sm:p-8 md:p-12">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
               Send us a <span className="text-primary">Message</span>
             </h2>
-            <p className="text-gray-500 text-sm mb-8">
+            <p className="text-gray-500 text-xs sm:text-sm mb-6 sm:mb-8">
               Fill in your details below and our team will get in touch with you shortly.
             </p>
 
@@ -285,7 +285,7 @@ export default function ContactUs() {
               </div>
             )}
 
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
                 <input
                   type="text"
@@ -294,7 +294,7 @@ export default function ContactUs() {
                   onChange={handleChange}
                   placeholder="Full Name *"
                   required
-                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
                 />
               </div>
 
@@ -305,7 +305,7 @@ export default function ContactUs() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email Address"
-                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
                 />
               </div>
 
@@ -317,7 +317,7 @@ export default function ContactUs() {
                   onChange={handleChange}
                   placeholder="Contact Number *"
                   required
-                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
                 />
               </div>
 
@@ -326,7 +326,7 @@ export default function ContactUs() {
                   name="course"
                   value={formData.course}
                   onChange={handleChange}
-                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm"
                 >
                   {COURSE_OPTIONS.map((c) => (
                     <option key={c} value={c}>
@@ -343,14 +343,14 @@ export default function ContactUs() {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Any specific questions or preferred batch timing? (Optional)"
-                  className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm resize-none"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all text-sm resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full py-4 rounded-2xl font-bold text-sm uppercase tracking-wider text-white bg-gradient-to-r from-blue-600 to-primary hover:from-blue-700 hover:to-blue-900 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                className="w-full py-3.5 sm:py-4 rounded-2xl font-bold text-sm uppercase tracking-wider text-white bg-gradient-to-r from-blue-600 to-primary hover:from-blue-700 hover:to-blue-900 shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
               >
                 {status === 'loading' ? (
                   <span>Submitting...</span>
@@ -365,16 +365,16 @@ export default function ContactUs() {
           </div>
 
           {/* Map Column */}
-          <div className="lg:col-span-6 relative min-h-[380px] bg-slate-100 flex flex-col">
+          <div className="lg:col-span-6 relative min-h-[340px] sm:min-h-[380px] bg-slate-100 flex flex-col">
             <iframe
               title="Mind Power Academy Location Map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.458284561875!2d75.1226!3d15.3647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8d73a87654321%3A0xabcdef1234567890!2sMind%20Power%20Academy!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-              className="w-full h-full min-h-[380px] border-0"
+              className="w-full h-full min-h-[340px] sm:min-h-[380px] border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
             {/* Quick location info footer below map */}
-            <div className="p-4 bg-slate-900 text-white text-xs flex justify-between items-center">
+            <div className="p-3.5 sm:p-4 bg-slate-900 text-white text-xs flex flex-col sm:flex-row gap-2.5 items-start sm:items-center justify-between">
               <span className="font-medium">
                 📍 Vidya Nagar, Rajnagar, Hubballi, Karnataka 580031
               </span>
@@ -382,7 +382,7 @@ export default function ContactUs() {
                 href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
                 target="_blank"
                 rel="noreferrer"
-                className="px-3 py-1 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold"
+                className="px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold shrink-0"
               >
                 Open in Maps
               </a>
@@ -394,9 +394,9 @@ export default function ContactUs() {
       {/* ──────────────────────────────────────────────
           4. Frequently Asked Questions Accordion
       ────────────────────────────────────────────── */}
-      <section className="py-12 pb-20 bg-white border-t border-gray-100">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-10">
+      <section className="py-10 sm:py-12 pb-16 sm:pb-20 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-10">
             <span className="text-primary font-bold text-xs uppercase tracking-widest">
               Got Questions?
             </span>
@@ -414,15 +414,15 @@ export default function ContactUs() {
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                  className="w-full p-5 text-left font-semibold text-gray-800 flex justify-between items-center bg-gray-50/70 hover:bg-gray-100 transition-colors text-sm md:text-base"
+                  className="w-full p-4 sm:p-5 text-left font-semibold text-gray-800 flex justify-between items-center bg-gray-50/70 hover:bg-gray-100 transition-colors text-sm md:text-base"
                 >
-                  <span>{faq.q}</span>
-                  <span className="text-primary text-lg">
+                  <span className="pr-2">{faq.q}</span>
+                  <span className="text-primary text-lg shrink-0">
                     {openFaq === idx ? '−' : '+'}
                   </span>
                 </button>
                 {openFaq === idx && (
-                  <div className="p-5 text-gray-600 text-sm leading-relaxed bg-white border-t border-gray-100">
+                  <div className="p-4 sm:p-5 text-gray-600 text-xs sm:text-sm leading-relaxed bg-white border-t border-gray-100">
                     {faq.a}
                   </div>
                 )}

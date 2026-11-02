@@ -123,14 +123,14 @@ function CourseCard({ course, index }) {
 
 export default function Courses() {
   return (
-    <section id="courses" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="courses" className="py-14 sm:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-10 sm:mb-14"
         >
           <span className="text-primary font-bold text-xs uppercase tracking-widest">What We Offer</span>
           <h2 className="section-title mt-2">Our Courses</h2>
@@ -139,7 +139,7 @@ export default function Courses() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
           {courses.map((course, i) => (
             <CourseCard key={course.title} course={course} index={i} />
           ))}
@@ -148,7 +148,7 @@ export default function Courses() {
         <div className="text-center">
           <Link
             to="/courses/"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm bg-primary text-white hover:bg-blue-700 shadow-md transition-all uppercase tracking-wider"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-full font-bold text-sm bg-primary text-white hover:bg-blue-700 shadow-md transition-all uppercase tracking-wider"
           >
             <span>Explore All Course Details</span>
             <FiArrowRight />

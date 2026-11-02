@@ -5,10 +5,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     font-family: 'Inter', sans-serif;
     @apply text-gray-800 bg-white;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

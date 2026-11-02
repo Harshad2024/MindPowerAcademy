@@ -124,7 +124,7 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       {/* 1. Page Banner */}
-      <section className="relative overflow-hidden py-20 md:py-28 text-white">
+      <section className="relative overflow-hidden py-14 sm:py-20 md:py-28 text-white">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/page-banner.jpg"
@@ -133,21 +133,21 @@ export default function CoursesPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#034ea2]/90 via-[#046bd2]/85 to-[#0b2560]/90" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <span className="inline-block py-1 px-4 rounded-full bg-white/20 border border-white/30 text-white text-xs font-semibold uppercase tracking-wider mb-4">
             Transformative Curriculum
           </span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight">
             Explore <span className="underline decoration-white/40">Our Courses</span>
           </h1>
-          <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-base md:text-lg">
+          <p className="mt-3 sm:mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Explore our expert-led courses and start your journey today! Choose the course that fits your goals and unlock your true potential.
           </p>
         </div>
       </section>
 
       {/* 2. Main Course Rows matching official layout */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6 space-y-16">
+      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
         {COURSES.map((course, idx) => (
           <div key={course.id} className="space-y-6">
             {/* Primary Course Card */}
@@ -158,7 +158,7 @@ export default function CoursesPage() {
               viewport={{ once: true }}
               className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 md:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center p-5 sm:p-6 md:p-10">
                 {/* Course Image */}
                 <div className={`lg:col-span-5 relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-md">
@@ -176,22 +176,22 @@ export default function CoursesPage() {
 
                 {/* Course Content */}
                 <div className={`lg:col-span-7 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900">
                     {course.title}
                   </h2>
-                  <p className="text-primary font-semibold text-sm md:text-base mt-1.5 mb-3">
+                  <p className="text-primary font-semibold text-xs sm:text-sm md:text-base mt-1.5 mb-3">
                     "{course.tagline}"
                   </p>
-                  <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed mb-6">
                     {course.desc}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <div className="flex flex-wrap gap-2.5 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {course.types.map((type) => (
                       <span
                         key={type}
-                        className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-900 border border-blue-200/60 px-3.5 py-1.5 rounded-full text-xs font-semibold"
+                        className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-900 border border-blue-200/60 px-3 py-1.5 rounded-full text-xs font-semibold"
                       >
                         <FiCheck className="text-primary text-sm shrink-0" />
                         <span>{type}</span>
@@ -206,10 +206,10 @@ export default function CoursesPage() {
                   )}
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-wrap gap-4 items-center">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
                     <Link
                       to="/contact-us/"
-                      className="px-6 py-3 rounded-full font-bold text-sm bg-primary hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all"
+                      className="px-6 py-3 rounded-full font-bold text-sm bg-primary hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all text-center justify-center"
                     >
                       Register Now
                     </Link>
@@ -219,7 +219,7 @@ export default function CoursesPage() {
                       )}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="px-5 py-3 rounded-full font-bold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center gap-2 shadow-md transition-all"
+                      className="px-5 py-3 rounded-full font-bold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center gap-2 shadow-md transition-all text-center"
                     >
                       <FaWhatsapp className="text-base" />
                       <span>WhatsApp Inquiry</span>
@@ -231,16 +231,16 @@ export default function CoursesPage() {
 
             {/* Sub-Tracks (e.g. Simple, Cursive, Running or Basic, Advanced) */}
             {course.subTracks && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 pt-2">
                 {course.subTracks.map((sub, sIdx) => (
                   <div
                     key={sIdx}
-                    className="bg-white rounded-2xl p-6 border border-blue-100 shadow-md flex flex-col justify-between hover:shadow-lg transition-shadow"
+                    className="bg-white rounded-2xl p-5 sm:p-6 border border-blue-100 shadow-md flex flex-col justify-between hover:shadow-lg transition-shadow"
                   >
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">{sub.title}</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">{sub.title}</h3>
                       <p className="text-primary text-xs font-semibold mb-3">{sub.motto}</p>
-                      <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-4">
+                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
                         {sub.text}
                       </p>
                     </div>
@@ -248,7 +248,7 @@ export default function CoursesPage() {
                       <p className="text-xs font-medium text-gray-400 mb-3">{sub.cta}</p>
                       <Link
                         to="/contact-us/"
-                        className="inline-block w-full text-center py-2 px-4 rounded-xl bg-blue-50 hover:bg-primary hover:text-white text-primary text-xs font-bold uppercase tracking-wider transition-colors"
+                        className="inline-block w-full text-center py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-primary hover:text-white text-primary text-xs font-bold uppercase tracking-wider transition-colors"
                       >
                         Enroll Now
                       </Link>
@@ -262,31 +262,31 @@ export default function CoursesPage() {
       </section>
 
       {/* 3. Bottom CTA */}
-      <section className="py-16 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 text-white p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="max-w-xl">
+      <section className="py-12 sm:py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 text-white p-6 sm:p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+            <div className="max-w-xl text-center md:text-left">
               <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider mb-3">
                 Need Guidance?
               </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
                 Not sure which course is right for you?
               </h2>
-              <p className="text-blue-100 mt-2 text-sm md:text-base">
+              <p className="text-blue-100 mt-2 text-xs sm:text-sm md:text-base">
                 Call our expert mentors directly for free counseling and personalised batch timings.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
               <a
                 href="tel:+919844856288"
-                className="px-6 py-3.5 rounded-full font-bold text-sm bg-white text-blue-800 hover:bg-blue-50 shadow-lg flex items-center justify-center gap-2 transition-all"
+                className="px-6 py-3.5 rounded-full font-bold text-sm bg-white text-blue-800 hover:bg-blue-50 shadow-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-center"
               >
                 <FiPhone />
                 <span>+91 98448 56288</span>
               </a>
               <Link
                 to="/contact-us/"
-                className="px-6 py-3.5 rounded-full font-bold text-sm bg-blue-900/60 hover:bg-blue-950 border border-white/30 text-white shadow-lg flex items-center justify-center gap-2 transition-all"
+                className="px-6 py-3.5 rounded-full font-bold text-sm bg-blue-900/60 hover:bg-blue-950 border border-white/30 text-white shadow-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-center"
               >
                 <span>Contact Us</span>
                 <FiArrowRight />

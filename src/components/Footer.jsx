@@ -4,9 +4,9 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1D4ED8] text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-blue-400/30">
+    <footer className="bg-[#1D4ED8] text-white pt-12 sm:pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-blue-400/30">
           {/* Brand Info */}
           <div>
             <Link to="/" className="inline-block mb-4">
@@ -159,7 +159,7 @@ export default function Footer() {
               </li>
             </ul>
 
-            <div className="text-xs text-blue-200 space-y-1">
+            <div className="text-xs text-blue-200 space-y-1.5 break-words">
               <p>📍 No 92, Lokappana Hakkal, Rajnagar, Vidya Nagar, Hubballi, Karnataka 580031</p>
               <p>📞 +91 98448 56288 | +91 94827 79529</p>
             </div>
@@ -167,9 +167,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-200 gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-blue-200 gap-3 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Mind Power Academy. All rights reserved.</p>
-          <p className="flex items-center gap-1">
+          <p className="flex items-center gap-1 justify-center sm:justify-start">
             Empowering Minds • Shaping Futures
           </p>
         </div>

@@ -28,20 +28,20 @@ export default function WhyChooseUs() {
   return (
     <section
       id="why-us"
-      className="py-20 bg-cover bg-center bg-no-repeat relative"
+      className="py-14 sm:py-20 bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-navy/80" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 sm:mb-12">
           <motion.h2
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-white"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white text-center md:text-left"
           >
             Why Choose Us?
           </motion.h2>
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="mt-4 md:mt-0 border-2 border-white text-white font-semibold px-6 py-2.5 rounded-full hover:bg-white hover:text-primary transition-all"
+            className="mt-4 md:mt-0 border-2 border-white text-white font-semibold px-6 py-2.5 rounded-full hover:bg-white hover:text-primary transition-all w-full sm:w-auto text-center"
           >
             VIEW MORE
           </motion.button>
@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-6 text-center card-hover"
+              className="bg-white rounded-2xl p-5 sm:p-6 text-center card-hover"
             >
               <div className="flex justify-center mb-4">
                 <div className="bg-blue-50 rounded-full p-4">

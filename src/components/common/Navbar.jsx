@@ -44,31 +44,34 @@ export default function Navbar() {
     <header className="w-full sticky top-0 z-50">
       {/* Top Info Bar */}
       <div className="bg-primary text-white text-xs md:text-sm font-medium">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-          <div className="flex items-center gap-6">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center gap-2">
+          <div className="flex items-center gap-4 sm:gap-6 min-w-0">
             <a
               href="mailto:mindpoweracademy77@gmail.com"
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0"
+              title="mindpoweracademy77@gmail.com"
             >
-              <FiMail className="text-sm" />
-              <span>mindpoweracademy77@gmail.com</span>
+              <FiMail className="text-sm shrink-0" />
+              <span className="truncate max-w-[150px] xs:max-w-[220px] sm:max-w-none">
+                mindpoweracademy77@gmail.com
+              </span>
             </a>
             <a
               href="tel:+919844856288"
-              className="hidden sm:flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="hidden md:flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0"
             >
               <FiPhone className="text-sm" />
               <span>+91 98448 56288</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-2.5 sm:gap-4 text-xs sm:text-sm shrink-0">
             <a
               href="https://www.instagram.com/mindpower__academy?mdxt=MXg1OW43ZGU3d2pnaA=="
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="hover:scale-110 transition-transform"
+              className="hover:scale-110 transition-transform p-0.5"
             >
               <FaInstagram />
             </a>
@@ -77,14 +80,14 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="hover:scale-110 transition-transform"
+              className="hover:scale-110 transition-transform p-0.5"
             >
               <FaFacebookF />
             </a>
             <Link
               to="/contact-us/"
               aria-label="Location"
-              className="hover:scale-110 transition-transform"
+              className="hover:scale-110 transition-transform p-0.5"
             >
               <FaMapMarkerAlt />
             </Link>
@@ -93,7 +96,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="hover:scale-110 transition-transform text-[#25D366]"
+              className="hover:scale-110 transition-transform text-[#25D366] p-0.5"
             >
               <FaWhatsapp />
             </a>
@@ -102,7 +105,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="hover:scale-110 transition-transform"
+              className="hover:scale-110 transition-transform p-0.5"
             >
               <FaYoutube />
             </a>
@@ -258,9 +261,10 @@ export default function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {mobileOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 shadow-xl space-y-3">
+          <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 shadow-xl space-y-3 max-h-[calc(100vh-80px)] overflow-y-auto">
             <Link
               to="/"
+              onClick={() => setMobileOpen(false)}
               className={`block py-2 text-base font-semibold ${
                 isHomeActive ? 'text-primary font-bold' : 'text-gray-700'
               }`}
@@ -269,6 +273,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/about-us/"
+              onClick={() => setMobileOpen(false)}
               className={`block py-2 text-base font-semibold ${
                 isAboutActive ? 'text-primary font-bold' : 'text-gray-700'
               }`}
@@ -277,6 +282,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/courses/"
+              onClick={() => setMobileOpen(false)}
               className={`block py-2 text-base font-semibold ${
                 isCoursesActive ? 'text-primary font-bold' : 'text-gray-700'
               }`}
@@ -299,6 +305,7 @@ export default function Navbar() {
                 <div className="pl-4 space-y-2 pt-1 border-l-2 border-primary/20 ml-2">
                   <Link
                     to="/upcoming-events/"
+                    onClick={() => setMobileOpen(false)}
                     className={`block py-1 text-sm ${
                       location.pathname.startsWith('/upcoming-events')
                         ? 'text-primary font-bold'
@@ -309,6 +316,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     to="/past-events/"
+                    onClick={() => setMobileOpen(false)}
                     className={`block py-1 text-sm ${
                       location.pathname.startsWith('/past-events') || location.pathname.startsWith('/gallery')
                         ? 'text-primary font-bold'
@@ -323,6 +331,7 @@ export default function Navbar() {
 
             <Link
               to="/contact-us/"
+              onClick={() => setMobileOpen(false)}
               className={`block py-2 text-base font-semibold ${
                 isContactActive ? 'text-primary font-bold' : 'text-gray-700'
               }`}
@@ -333,6 +342,7 @@ export default function Navbar() {
             <div className="pt-2">
               <Link
                 to="/contact-us/"
+                onClick={() => setMobileOpen(false)}
                 className="block text-center w-full py-3 rounded-full font-bold text-sm tracking-wide bg-primary text-white shadow-md uppercase"
               >
                 Enroll Now

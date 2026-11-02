@@ -14,24 +14,24 @@ export default function AboutUs() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       {/* Page Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#071330] via-[#0B2560] to-[#0D1F4D] py-20 text-white">
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#071330] via-[#0B2560] to-[#0D1F4D] py-14 sm:py-20 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
             Our Journey & Vision
           </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">About Us</h1>
-          <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-base md:text-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight">About Us</h1>
+          <p className="mt-3 sm:mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Empowering Minds, Shaping Futures: Dedicated to unlocking the true potential within every individual.
           </p>
         </div>
       </section>
 
       {/* Founder & Mission Section */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
           {/* Founder Photo Column */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white p-3">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white p-2.5 sm:p-3">
               <img
                 src="/images/umesh-p.png"
                 alt="Founder Umesh S. Phirangi"
@@ -43,10 +43,10 @@ export default function AboutUs() {
           {/* Details Column */}
           <div className="lg:col-span-7">
             <span className="text-primary font-bold text-xs uppercase tracking-widest">About Founder</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-4 sm:mb-6">
               Umesh .S. Phirangi
             </h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed text-base">
+            <div className="space-y-3.5 sm:space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
               <p>
                 At <strong>Mind Power Academy</strong>, we believe that every mind holds the key to a brighter and more fulfilling future. Founded by <strong>Umesh S. Phirangi</strong>, our academy is built on the vision of empowering individuals to achieve personal and professional excellence.
               </p>
@@ -58,11 +58,11 @@ export default function AboutUs() {
               </p>
             </div>
 
-            <div className="mt-8 space-y-3">
+            <div className="mt-6 sm:mt-8 space-y-2.5 sm:space-y-3">
               {highlights.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <FiCheckCircle className="text-primary text-xl shrink-0" />
-                  <span className="text-gray-800 font-medium text-sm md:text-base">{item}</span>
+                  <FiCheckCircle className="text-primary text-lg sm:text-xl shrink-0" />
+                  <span className="text-gray-800 font-medium text-xs sm:text-sm md:text-base">{item}</span>
                 </div>
               ))}
             </div>
@@ -71,19 +71,19 @@ export default function AboutUs() {
       </section>
 
       {/* YouTube Videos Section */}
-      <section id="gallery" className="py-16 md:py-24 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+      <section id="gallery" className="py-12 sm:py-16 md:py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
             <span className="text-primary font-bold text-xs uppercase tracking-widest">Our Media</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">
               Our YouTube Videos & Workshops
             </h2>
-            <p className="text-gray-500 mt-2 text-sm max-w-2xl mx-auto">
+            <p className="text-gray-500 mt-2 text-xs sm:text-sm max-w-2xl mx-auto">
               Watch snippets of our students' transformations, handwriting workshops, and live sessions directly from our official channel.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 id: 'Vp7FU2YNVnc',

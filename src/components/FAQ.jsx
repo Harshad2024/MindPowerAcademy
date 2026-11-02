@@ -36,10 +36,10 @@ function FAQItem({ faq, index }) {
     <div className="border border-gray-200 rounded-2xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className={`w-full text-left flex justify-between items-center px-5 py-4 font-semibold text-sm md:text-base transition-colors ${open ? 'bg-navy text-white' : 'bg-white text-navy hover:bg-blue-50'}`}
+        className={`w-full text-left flex justify-between items-center px-4 sm:px-5 py-3.5 sm:py-4 font-semibold text-sm md:text-base transition-colors ${open ? 'bg-navy text-white' : 'bg-white text-navy hover:bg-blue-50'}`}
       >
-        {faq.q}
-        <FiChevronDown className={`flex-shrink-0 ml-3 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <span className="pr-2">{faq.q}</span>
+        <FiChevronDown className={`flex-shrink-0 ml-2 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -50,7 +50,7 @@ function FAQItem({ faq, index }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <p className="px-5 py-4 text-gray-600 text-sm leading-relaxed bg-white border-t border-gray-100">
+            <p className="px-4 sm:px-5 py-3.5 sm:py-4 text-gray-600 text-xs sm:text-sm leading-relaxed bg-white border-t border-gray-100">
               {faq.a}
             </p>
           </motion.div>
@@ -64,20 +64,20 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="py-20 bg-cover bg-center relative"
+      className="py-14 sm:py-20 bg-cover bg-center relative"
       style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
     >
       <div className="absolute inset-0 bg-primary/80" />
-      <div className="relative z-10 max-w-3xl mx-auto px-6">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Frequently Asked Questions</h2>
-          <p className="text-white/80">Everything you need to know before enrolling.</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3">Frequently Asked Questions</h2>
+          <p className="text-white/80 text-sm sm:text-base">Everything you need to know before enrolling.</p>
         </motion.div>
 
         <div className="space-y-3">

@@ -162,19 +162,19 @@ export default function PastEvents() {
         {/* Decorative Grid Pattern */}
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <span className="inline-block py-1.5 px-4 rounded-full bg-white/20 border border-white/30 text-white text-xs font-bold uppercase tracking-widest mb-4 backdrop-blur-sm shadow-sm">
             Event Highlights & Impact
           </span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-wider drop-shadow-md">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-wider drop-shadow-md">
             OUR SUCCESSFUL EVENTS
           </h1>
-          <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-base md:text-lg font-medium leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-medium leading-relaxed">
             Witness the inspiring moments, dynamic seminars, and remarkable transformations from our academy.
           </p>
 
           {/* Breadcrumb */}
-          <div className="mt-6 flex items-center justify-center gap-2 text-xs md:text-sm text-blue-200">
+          <div className="mt-5 sm:mt-6 flex items-center justify-center gap-2 text-xs md:text-sm text-blue-200">
             <Link to="/" className="hover:text-white transition-colors">
               Home
             </Link>
@@ -187,18 +187,18 @@ export default function PastEvents() {
       {/* ──────────────────────────────────────────────
           2. Gallery Section with Filter Tabs
       ────────────────────────────────────────────── */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
             Gallery
           </h2>
-          <div className="w-20 h-1.5 bg-primary mx-auto my-4 rounded-full" />
-          <p className="text-gray-600 text-base md:text-lg">
+          <div className="w-16 sm:w-20 h-1.5 bg-primary mx-auto my-3 sm:my-4 rounded-full" />
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg">
             Glimpses of real interactive workshops, school seminars, handwriting coaching, and student achievements.
           </p>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-6 sm:mt-8">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -207,7 +207,7 @@ export default function PastEvents() {
                   setActiveCategory(cat);
                   setSelectedIdx(null);
                 }}
-                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 ${
+                className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 ${
                   activeCategory === cat
                     ? 'bg-primary text-white shadow-md shadow-blue-500/25 scale-105'
                     : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
@@ -220,7 +220,7 @@ export default function PastEvents() {
         </div>
 
         {/* Photos Grid - 12 authentic photos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {filteredPhotos.map((photo, index) => (
             <motion.div
               key={photo.id}
@@ -294,32 +294,32 @@ export default function PastEvents() {
       {/* ──────────────────────────────────────────────
           3. Quick Stats & Community Reach
       ────────────────────────────────────────────── */}
-      <section className="py-16 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+      <section className="py-12 sm:py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
+            <div className="p-2 sm:p-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-1 sm:mb-2">
                 15,000+
               </div>
-              <p className="text-gray-600 font-semibold text-sm">Students Trained</p>
+              <p className="text-gray-600 font-semibold text-xs sm:text-sm">Students Trained</p>
             </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+            <div className="p-2 sm:p-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-1 sm:mb-2">
                 500+
               </div>
-              <p className="text-gray-600 font-semibold text-sm">Workshops Conducted</p>
+              <p className="text-gray-600 font-semibold text-xs sm:text-sm">Workshops Conducted</p>
             </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+            <div className="p-2 sm:p-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-1 sm:mb-2">
                 20+
               </div>
-              <p className="text-gray-600 font-semibold text-sm">Years of Experience</p>
+              <p className="text-gray-600 font-semibold text-xs sm:text-sm">Years of Experience</p>
             </div>
-            <div className="p-4">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">
+            <div className="p-2 sm:p-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-1 sm:mb-2">
                 100%
               </div>
-              <p className="text-gray-600 font-semibold text-sm">Commitment to Growth</p>
+              <p className="text-gray-600 font-semibold text-xs sm:text-sm">Commitment to Growth</p>
             </div>
           </div>
         </div>
@@ -328,24 +328,24 @@ export default function PastEvents() {
       {/* ──────────────────────────────────────────────
           4. Bottom Call to Action
       ────────────────────────────────────────────── */}
-      <section className="py-16 max-w-7xl mx-auto px-6">
-        <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 text-white p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="relative z-10 max-w-xl">
+      <section className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 text-white p-6 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+          <div className="relative z-10 max-w-xl text-center md:text-left">
             <span className="inline-block py-1 px-3 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider mb-3">
               Join Our Next Batch
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
               Ready to experience this transformation yourself?
             </h2>
-            <p className="text-blue-100 mt-3 text-sm md:text-base">
+            <p className="text-blue-100 mt-2 sm:mt-3 text-xs sm:text-sm md:text-base">
               Explore our upcoming events or contact our mentors to schedule an individualized orientation session.
             </p>
           </div>
 
-          <div className="relative z-10 flex flex-col sm:flex-row gap-4 shrink-0">
+          <div className="relative z-10 flex flex-col sm:flex-row gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
             <Link
               to="/upcoming-events/"
-              className="px-6 py-3.5 rounded-full font-bold text-sm bg-white text-blue-800 hover:bg-blue-50 shadow-lg flex items-center justify-center gap-2 transition-all"
+              className="px-6 py-3.5 rounded-full font-bold text-sm bg-white text-blue-800 hover:bg-blue-50 shadow-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-center"
             >
               <FiCalendar className="text-base" />
               <span>Upcoming Workshops</span>
@@ -354,7 +354,7 @@ export default function PastEvents() {
               href="https://wa.me/919844856288?text=Hello!%20I%20am%20interested%20in%20Mind%20Power%20Academy%20workshops."
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-3.5 rounded-full font-bold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg flex items-center justify-center gap-2 transition-all"
+              className="px-6 py-3.5 rounded-full font-bold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg flex items-center justify-center gap-2 transition-all w-full sm:w-auto text-center"
             >
               <FaWhatsapp className="text-base" />
               <span>Chat on WhatsApp</span>
@@ -372,19 +372,19 @@ export default function PastEvents() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-4 md:p-8 select-none"
+            className="fixed inset-0 z-[60] bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 md:p-8 select-none"
             onClick={() => setSelectedIdx(null)}
           >
             {/* Top Bar: Counter & Close */}
-            <div className="absolute top-5 inset-x-5 md:inset-x-8 flex items-center justify-between text-white z-50">
-              <div className="bg-white/10 px-4 py-1.5 rounded-full backdrop-blur-sm text-xs font-bold tracking-wider">
+            <div className="absolute top-3.5 inset-x-3.5 sm:top-5 sm:inset-x-8 flex items-center justify-between text-white z-[70]">
+              <div className="bg-white/10 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full backdrop-blur-sm text-xs font-bold tracking-wider">
                 Photo {selectedIdx + 1} of {filteredPhotos.length}
               </div>
 
               <button
                 type="button"
                 onClick={() => setSelectedIdx(null)}
-                className="text-white text-3xl p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all"
+                className="text-white text-2xl sm:text-3xl p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all"
                 aria-label="Close"
               >
                 <FiX />
@@ -400,7 +400,7 @@ export default function PastEvents() {
                   (prev) => (prev - 1 + filteredPhotos.length) % filteredPhotos.length
                 );
               }}
-              className="absolute left-4 md:left-8 text-white text-2xl md:text-3xl p-3 rounded-full bg-white/10 hover:bg-white/25 transition-all z-40"
+              className="absolute left-2 sm:left-4 md:left-8 text-white text-xl sm:text-2xl md:text-3xl p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/25 transition-all z-[65]"
               aria-label="Previous image"
             >
               <FiChevronLeft />
@@ -413,7 +413,7 @@ export default function PastEvents() {
                 e.stopPropagation();
                 setSelectedIdx((prev) => (prev + 1) % filteredPhotos.length);
               }}
-              className="absolute right-4 md:right-8 text-white text-2xl md:text-3xl p-3 rounded-full bg-white/10 hover:bg-white/25 transition-all z-40"
+              className="absolute right-2 sm:right-4 md:right-8 text-white text-xl sm:text-2xl md:text-3xl p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/25 transition-all z-[65]"
               aria-label="Next image"
             >
               <FiChevronRight />
@@ -426,20 +426,20 @@ export default function PastEvents() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative max-w-4xl max-h-[85vh] flex flex-col items-center"
+              className="relative max-w-4xl max-h-[85vh] flex flex-col items-center px-8 sm:px-12"
               onClick={(e) => e.stopPropagation()}
             >
               <img
                 src={filteredPhotos[selectedIdx].src}
                 alt={filteredPhotos[selectedIdx].title}
-                className="max-h-[72vh] w-auto rounded-2xl shadow-2xl object-contain border border-white/15"
+                className="max-h-[65vh] sm:max-h-[72vh] w-auto rounded-2xl shadow-2xl object-contain border border-white/15"
               />
 
-              <div className="mt-4 text-center text-white max-w-2xl px-4">
-                <h4 className="text-lg md:text-xl font-bold">
+              <div className="mt-3 sm:mt-4 text-center text-white max-w-2xl px-2 sm:px-4">
+                <h4 className="text-base sm:text-lg md:text-xl font-bold">
                   {filteredPhotos[selectedIdx].title}
                 </h4>
-                <p className="text-gray-300 text-xs md:text-sm mt-1">
+                <p className="text-gray-300 text-xs sm:text-sm mt-1 line-clamp-2">
                   {filteredPhotos[selectedIdx].desc}
                 </p>
                 <p className="text-primary text-xs mt-1 font-semibold">
