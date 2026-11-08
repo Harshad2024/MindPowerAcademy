@@ -45,14 +45,14 @@ export default function Navbar() {
       {/* Top Info Bar */}
       <div className="bg-primary text-white text-xs md:text-sm font-medium">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center gap-2">
-          <div className="flex items-center gap-4 sm:gap-6 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-6 min-w-0 flex-1">
             <a
               href="mailto:mindpoweracademy77@gmail.com"
               className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0"
               title="mindpoweracademy77@gmail.com"
             >
               <FiMail className="text-sm shrink-0" />
-              <span className="truncate max-w-[150px] xs:max-w-[220px] sm:max-w-none">
+              <span className="truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none">
                 mindpoweracademy77@gmail.com
               </span>
             </a>
@@ -65,7 +65,7 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 shrink-0">
             <a
               href="https://www.instagram.com/mindpower__academy/"
               target="_blank"
@@ -84,13 +84,16 @@ export default function Navbar() {
             >
               <FaFacebookF />
             </a>
-            <Link
-              to="/contact-us/"
-              aria-label="Location"
+            <a
+              href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Location on Google Maps"
+              title="Location on Google Maps"
               className="text-lg sm:text-xl hover:scale-110 hover:text-red-300 transition-all duration-200 p-1"
             >
               <FaMapMarkerAlt />
-            </Link>
+            </a>
             <a
               href="https://wa.me/919844856288"
               target="_blank"
@@ -347,6 +350,33 @@ export default function Navbar() {
               >
                 Enroll Now
               </Link>
+            </div>
+
+            {/* Quick Contact & Map for Mobile */}
+            <div className="pt-4 mt-2 border-t border-gray-100 space-y-2.5">
+              <a
+                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
+              >
+                <FaMapMarkerAlt className="text-red-500 text-base shrink-0" />
+                <span>Locate on Google Maps</span>
+              </a>
+              <a
+                href="tel:+919844856288"
+                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
+              >
+                <FiPhone className="text-primary text-base shrink-0" />
+                <span>+91 98448 56288</span>
+              </a>
+              <a
+                href="mailto:mindpoweracademy77@gmail.com"
+                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1 break-all"
+              >
+                <FiMail className="text-primary text-base shrink-0" />
+                <span>mindpoweracademy77@gmail.com</span>
+              </a>
             </div>
           </div>
         )}

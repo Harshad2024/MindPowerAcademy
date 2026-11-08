@@ -159,9 +159,25 @@ export default function Footer() {
               </li>
             </ul>
 
-            <div className="text-xs text-blue-200 space-y-1.5 break-words">
-              <p>📍 No 92, Lokappana Hakkal, Rajnagar, Vidya Nagar, Hubballi, Karnataka 580031</p>
-              <p>📞 +91 98448 56288 | +91 94827 79529</p>
+            <div className="text-xs text-blue-200 space-y-2 break-words">
+              <a
+                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors block"
+              >
+                📍 No 92, Lokappana Hakkal, Rajnagar, Vidya Nagar, Hubballi, Karnataka 580031
+              </a>
+              <p>
+                📞{' '}
+                <a href="tel:+919844856288" className="hover:text-white transition-colors">
+                  +91 98448 56288
+                </a>{' '}
+                |{' '}
+                <a href="tel:+919482779529" className="hover:text-white transition-colors">
+                  +91 94827 79529
+                </a>
+              </p>
             </div>
           </div>
         </div>
