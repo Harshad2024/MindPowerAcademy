@@ -76,6 +76,38 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* Co-Founder Section */}
+      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 border-t border-gray-200">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          {/* Details Column — on left for desktop (reversed order) */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <span className="text-primary font-bold text-xs uppercase tracking-widest">About Co-Founder</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mt-2 mb-4 sm:mb-6">
+              Harshad .U. Phirangi
+            </h2>
+            <div className="space-y-3.5 sm:space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
+              <p>
+                As the Co-Founder of Mind Power Academy, <strong>Harshad U. Phirangi</strong> plays a pivotal role in shaping the vision and mission of the academy. Passionate about empowering individuals, Harshad brings innovative ideas and strategies to ensure the success of every program.
+              </p>
+              <p>
+                With a deep commitment to personal growth and excellence, he works alongside the team to create a transformative learning environment. His dedication to quality training and student outcomes has been instrumental in growing Mind Power Academy's reach across Karnataka and beyond.
+              </p>
+            </div>
+          </div>
+
+          {/* Co-Founder Photo Column */}
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-white p-2.5 sm:p-3">
+              <img
+                src="/images/harshad-p.jpeg"
+                alt="Co-Founder Harshad U. Phirangi"
+                className="w-full h-auto max-h-[480px] object-cover object-top rounded-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* YouTube Videos Section */}
       <section id="gallery" className="py-12 sm:py-16 md:py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

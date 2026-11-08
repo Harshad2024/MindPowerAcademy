@@ -65,13 +65,13 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2.5 sm:gap-4 text-xs sm:text-sm shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             <a
-              href="https://www.instagram.com/mindpower__academy?mdxt=MXg1OW43ZGU3d2pnaA=="
+              href="https://www.instagram.com/mindpower__academy/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="hover:scale-110 transition-transform p-0.5"
+              className="text-lg sm:text-xl hover:scale-110 hover:text-pink-300 transition-all duration-200 p-1"
             >
               <FaInstagram />
             </a>
@@ -80,14 +80,14 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="hover:scale-110 transition-transform p-0.5"
+              className="text-lg sm:text-xl hover:scale-110 hover:text-blue-300 transition-all duration-200 p-1"
             >
               <FaFacebookF />
             </a>
             <Link
               to="/contact-us/"
               aria-label="Location"
-              className="hover:scale-110 transition-transform p-0.5"
+              className="text-lg sm:text-xl hover:scale-110 hover:text-red-300 transition-all duration-200 p-1"
             >
               <FaMapMarkerAlt />
             </Link>
@@ -96,7 +96,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="hover:scale-110 transition-transform text-[#25D366] p-0.5"
+              className="text-lg sm:text-xl hover:scale-110 text-[#25D366] hover:text-[#4AE380] transition-all duration-200 p-1"
             >
               <FaWhatsapp />
             </a>
@@ -105,7 +105,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="hover:scale-110 transition-transform p-0.5"
+              className="text-lg sm:text-xl hover:scale-110 hover:text-red-400 transition-all duration-200 p-1"
             >
               <FaYoutube />
             </a>
