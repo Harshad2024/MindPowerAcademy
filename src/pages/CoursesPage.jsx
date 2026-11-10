@@ -101,10 +101,16 @@ export default function CoursesPage() {
                 >
                   {course.badge}
                 </span>
-                {course.subTracks && (
+                {course.styles && (
                   <span className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
                     <FiLayers className="text-xs" />
-                    <span>{course.subTracks.length} Sub-Courses</span>
+                    <span>3 Handwriting Styles</span>
+                  </span>
+                )}
+                {course.levels && (
+                  <span className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    <FiLayers className="text-xs" />
+                    <span>2 Learning Levels</span>
                   </span>
                 )}
               </Link>
@@ -123,24 +129,36 @@ export default function CoursesPage() {
                   {course.shortDesc}
                 </p>
 
-                {/* Sub-courses OR Key Highlights */}
-                {course.subTracks ? (
+                {/* Handwriting Styles or Grammar Levels or Key Highlights */}
+                {course.styles ? (
                   <div className="mb-5 bg-slate-50 rounded-2xl p-3.5 border border-blue-100">
                     <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
-                      Included Tracks
+                      Styles Covered
                     </p>
-                    <div className="flex flex-col gap-1.5">
-                      {course.subTracks.map((track) => (
-                        <Link
-                          key={track.slug}
-                          to={`/courses/${course.slug}/${track.slug}`}
-                          className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-white hover:bg-blue-50 border border-gray-100 hover:border-blue-200 text-xs font-semibold text-gray-800 hover:text-primary transition-colors"
+                    <div className="flex flex-wrap gap-1.5">
+                      {course.styles.map((style) => (
+                        <span
+                          key={style.name}
+                          className="px-2.5 py-1 rounded-lg bg-white border border-gray-200/80 text-xs font-semibold text-gray-700"
                         >
-                          <span>
-                            {track.letter}) {track.shortName}
-                          </span>
-                          <FiArrowRight className="text-primary shrink-0" />
-                        </Link>
+                          {style.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : course.levels ? (
+                  <div className="mb-5 bg-slate-50 rounded-2xl p-3.5 border border-blue-100">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
+                      Levels Covered
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {course.levels.map((level) => (
+                        <span
+                          key={level.name}
+                          className="px-2.5 py-1 rounded-lg bg-white border border-gray-200/80 text-xs font-semibold text-gray-700"
+                        >
+                          {level.name}
+                        </span>
                       ))}
                     </div>
                   </div>

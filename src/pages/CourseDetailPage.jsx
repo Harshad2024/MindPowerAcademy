@@ -7,6 +7,7 @@ import {
   FiCheck,
   FiCheckCircle,
   FiChevronRight,
+  FiEdit3,
   FiLayers,
   FiMapPin,
   FiMonitor,
@@ -14,41 +15,26 @@ import {
   FiUsers,
 } from 'react-icons/fi';
 import Seo from '../components/common/Seo';
-import { COURSES_DATA, getCourseBySlug, getSubTrackBySlug } from '../data/coursesData';
+import { COURSES_DATA, getCourseBySlug } from '../data/coursesData';
 
 export default function CourseDetailPage() {
-  const { courseSlug, subTrackSlug } = useParams();
+  const { courseSlug } = useParams();
   const course = getCourseBySlug(courseSlug);
 
   if (!course) {
     return <Navigate to="/courses/" replace />;
   }
 
-  const activeTrack = subTrackSlug ? getSubTrackBySlug(course, subTrackSlug) : null;
-  if (subTrackSlug && !activeTrack) {
-    return <Navigate to={`/courses/${course.slug}/`} replace />;
-  }
-
-  const hasSubTracks = Boolean(course.subTracks?.length);
-  const seoTitle = activeTrack ? `${activeTrack.title} — ${course.shortTitle}` : course.title;
-  const seoDesc = activeTrack ? activeTrack.text : course.fullDesc;
-  const seoPath = activeTrack
-    ? `/courses/${course.slug}/${activeTrack.slug}`
-    : `/courses/${course.slug}`;
-
-  const enrollLabel = activeTrack
-    ? `${course.contactOption} - ${activeTrack.shortName}`
-    : course.contactOption;
-
-  const whatsappMessage = activeTrack
-    ? `Hello! I am interested in enrolling in ${course.title} (${activeTrack.shortName}).`
-    : `Hello! I am interested in enrolling in the ${course.title}.`;
-
   const otherCourses = COURSES_DATA.filter((c) => c.slug !== course.slug).slice(0, 3);
+  const whatsappMessage = `Hello! I am interested in enrolling in the ${course.title}.`;
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      <Seo title={seoTitle} description={seoDesc} path={seoPath} />
+      <Seo
+        title={course.title}
+        description={course.fullDesc}
+        path={`/courses/${course.slug}`}
+      />
 
       {/* 1. Course Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#071330] via-[#0B2560] to-[#0D1F4D] text-white py-12 sm:py-16 md:py-20">
@@ -66,20 +52,7 @@ export default function CourseDetailPage() {
               Courses
             </Link>
             <FiChevronRight className="text-blue-400 shrink-0" />
-            {activeTrack ? (
-              <>
-                <Link
-                  to={`/courses/${course.slug}/`}
-                  className="hover:text-white transition-colors"
-                >
-                  {course.shortTitle}
-                </Link>
-                <FiChevronRight className="text-blue-400 shrink-0" />
-                <span className="text-white font-semibold">{activeTrack.shortName}</span>
-              </>
-            ) : (
-              <span className="text-white font-semibold">{course.shortTitle}</span>
-            )}
+            <span className="text-white font-semibold">{course.shortTitle}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -98,21 +71,21 @@ export default function CourseDetailPage() {
               </span>
 
               <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
-                {activeTrack ? activeTrack.title : course.title}
+                {course.title}
               </h1>
 
               <p className="text-blue-200 font-semibold text-sm sm:text-base md:text-lg mt-2.5 mb-4">
-                {activeTrack ? activeTrack.motto : `"${course.tagline}"`}
+                "{course.tagline}"
               </p>
 
               <p className="text-blue-50/90 text-sm sm:text-base leading-relaxed max-w-2xl mb-7">
-                {activeTrack ? activeTrack.text : course.fullDesc}
+                {course.fullDesc}
               </p>
 
               {/* Hero CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
-                  to={`/contact-us/?course=${encodeURIComponent(enrollLabel)}`}
+                  to={`/contact-us/?course=${encodeURIComponent(course.contactOption)}`}
                   className="px-7 py-3.5 rounded-full font-bold text-sm bg-white text-blue-900 hover:bg-blue-50 shadow-lg transition-all text-center uppercase tracking-wider"
                 >
                   Enroll Now
@@ -148,131 +121,47 @@ export default function CourseDetailPage() {
         </div>
       </section>
 
-      {/* 2. Sub-Courses / Program Tracks Section (When applicable) */}
-      {hasSubTracks && (
-        <section className="py-10 sm:py-14 bg-white border-b border-gray-200">
+      {/* 2. Handwriting Styles Section (All 3 on this one page) */}
+      {course.styles && (
+        <section className="py-12 sm:py-16 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-              <div>
-                <span className="inline-flex items-center gap-1.5 text-primary font-bold text-xs uppercase tracking-widest">
-                  <FiLayers />
-                  <span>Course Structure</span>
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
-                  {course.shortTitle} Tracks
-                </h2>
-                <p className="text-gray-500 text-xs sm:text-sm mt-1">
-                  Select a specific track below to view its focus areas, or compare all modules side by side.
-                </p>
-              </div>
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <span className="inline-flex items-center gap-1.5 text-primary font-bold text-xs uppercase tracking-widest">
+                <FiEdit3 />
+                <span>Styles Covered</span>
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">
+                Handwriting Styles in This Course
+              </h2>
+              <p className="text-gray-500 text-xs sm:text-sm md:text-base mt-2">
+                All three handwriting formats are covered thoroughly in our curriculum so students master print clarity, flowing elegance, and exam speed.
+              </p>
             </div>
 
-            {/* Track Switcher Tabs */}
-            <div className="flex flex-wrap gap-2.5 mb-8">
-              <Link
-                to={`/courses/${course.slug}/`}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border ${
-                  !activeTrack
-                    ? 'bg-primary text-white border-primary shadow-md'
-                    : 'bg-slate-50 text-gray-700 border-gray-200 hover:border-primary hover:text-primary'
-                }`}
-              >
-                Overview (All {course.subTracks.length} Tracks)
-              </Link>
-              {course.subTracks.map((track) => {
-                const isSelected = activeTrack?.slug === track.slug;
-                return (
-                  <Link
-                    key={track.slug}
-                    to={`/courses/${course.slug}/${track.slug}`}
-                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border ${
-                      isSelected
-                        ? 'bg-primary text-white border-primary shadow-md'
-                        : 'bg-slate-50 text-gray-700 border-gray-200 hover:border-primary hover:text-primary'
-                    }`}
-                  >
-                    {track.letter}) {track.shortName}
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Focused Active Track Card OR Comparison Grid */}
-            {activeTrack ? (
-              <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-blue-100 shadow-sm">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-                  <div className="lg:col-span-7 space-y-4">
-                    <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold uppercase tracking-wider">
-                      Track {activeTrack.letter.toUpperCase()}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {course.styles.map((style) => (
+                <div
+                  key={style.name}
+                  className="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-blue-100/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold uppercase tracking-wider mb-3">
+                      {style.name}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
-                      {activeTrack.title}
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">
+                      {style.title}
                     </h3>
-                    <p className="text-primary font-semibold text-sm">{activeTrack.motto}</p>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                      {activeTrack.text}
+                    <p className="text-primary text-xs font-semibold mb-3">{style.motto}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5">
+                      {style.text}
                     </p>
-                    <div className="pt-2">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">
-                        Ideal For
-                      </h4>
-                      <p className="text-sm text-gray-800 font-medium">{activeTrack.idealFor}</p>
-                    </div>
-                  </div>
 
-                  <div className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-sm space-y-4">
-                    <h4 className="font-bold text-gray-900 text-base">
-                      Key Focus Areas
-                    </h4>
-                    <ul className="space-y-3">
-                      {activeTrack.focusPoints.map((point) => (
-                        <li key={point} className="flex items-start gap-2.5 text-sm text-gray-700">
-                          <FiCheckCircle className="text-primary text-base shrink-0 mt-0.5" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="pt-2 border-t border-gray-100">
-                      <p className="text-xs text-gray-500 mb-3">{activeTrack.cta}</p>
-                      <Link
-                        to={`/contact-us/?course=${encodeURIComponent(enrollLabel)}`}
-                        className="block text-center w-full py-3 rounded-xl bg-primary hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
-                      >
-                        Enroll in {activeTrack.shortName}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div
-                className={`grid grid-cols-1 gap-6 ${
-                  course.subTracks.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2'
-                }`}
-              >
-                {course.subTracks.map((track) => (
-                  <div
-                    key={track.slug}
-                    className="bg-slate-50 rounded-2xl p-6 border border-blue-100 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-primary text-white text-xs font-bold uppercase">
-                          {track.letter}
-                        </span>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                          Specialized Track
-                        </span>
-                      </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
-                        {track.title}
-                      </h3>
-                      <p className="text-primary text-xs font-semibold mb-3">{track.motto}</p>
-                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
-                        {track.text}
-                      </p>
-                      <ul className="space-y-2 mb-5">
-                        {track.focusPoints.map((point) => (
+                    <div className="pt-2 border-t border-gray-200/60 mb-5">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2.5">
+                        Key Focus Points
+                      </h4>
+                      <ul className="space-y-2">
+                        {style.focusPoints.map((point) => (
                           <li key={point} className="flex items-start gap-2 text-xs text-gray-700">
                             <FiCheck className="text-primary shrink-0 mt-0.5" />
                             <span>{point}</span>
@@ -280,32 +169,99 @@ export default function CourseDetailPage() {
                         ))}
                       </ul>
                     </div>
-
-                    <div className="pt-3 border-t border-blue-100/70 flex flex-col sm:flex-row gap-2.5">
-                      <Link
-                        to={`/courses/${course.slug}/${track.slug}`}
-                        className="flex-1 text-center py-2.5 px-3 rounded-xl bg-white border border-blue-200 hover:border-primary text-primary text-xs font-bold uppercase tracking-wider transition-colors"
-                      >
-                        Explore Track
-                      </Link>
-                      <Link
-                        to={`/contact-us/?course=${encodeURIComponent(
-                          `${course.contactOption} - ${track.shortName}`
-                        )}`}
-                        className="flex-1 text-center py-2.5 px-3 rounded-xl bg-primary hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-colors"
-                      >
-                        Enroll
-                      </Link>
-                    </div>
                   </div>
-                ))}
-              </div>
-            )}
+
+                  <div className="pt-3 border-t border-blue-100">
+                    <p className="text-[11px] text-gray-500 mb-3">
+                      <strong className="text-gray-700">Best For:</strong> {style.idealFor}
+                    </p>
+                    <Link
+                      to={`/contact-us/?course=${encodeURIComponent(
+                        `${course.contactOption} - ${style.name}`
+                      )}`}
+                      className="block text-center w-full py-2.5 px-3 rounded-xl bg-primary hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                    >
+                      Enroll in {style.name}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* 3. Course Curriculum & Benefits Details */}
+      {/* 3. English Grammar Levels Section (Both on this one page) */}
+      {course.levels && (
+        <section className="py-12 sm:py-16 bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <span className="inline-flex items-center gap-1.5 text-primary font-bold text-xs uppercase tracking-widest">
+                <FiLayers />
+                <span>Curriculum Levels</span>
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mt-2">
+                Grammar Levels in This Course
+              </h2>
+              <p className="text-gray-500 text-xs sm:text-sm md:text-base mt-2">
+                Whether you need to build a rock-solid foundation or master advanced fluency, both levels are taught with practical exercises and personal feedback.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+              {course.levels.map((level) => (
+                <div
+                  key={level.name}
+                  className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-blue-100/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-primary text-xs font-bold uppercase tracking-wider mb-3">
+                      {level.name}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">
+                      {level.title}
+                    </h3>
+                    <p className="text-primary text-xs sm:text-sm font-semibold mb-3">{level.motto}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5">
+                      {level.text}
+                    </p>
+
+                    <div className="pt-2 border-t border-gray-200/60 mb-5">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2.5">
+                        Key Focus Points
+                      </h4>
+                      <ul className="space-y-2">
+                        {level.focusPoints.map((point) => (
+                          <li key={point} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
+                            <FiCheck className="text-primary shrink-0 mt-0.5" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-blue-100">
+                    <p className="text-xs text-gray-500 mb-3">
+                      <strong className="text-gray-700">Best For:</strong> {level.idealFor}
+                    </p>
+                    <Link
+                      to={`/contact-us/?course=${encodeURIComponent(
+                        `${course.contactOption} - ${level.name}`
+                      )}`}
+                      className="block text-center w-full py-3 rounded-xl bg-primary hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+                    >
+                      Enroll in {level.name}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. Curriculum Details & Benefits */}
       <section className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: What You Will Gain + Modules */}
@@ -328,7 +284,7 @@ export default function CourseDetailPage() {
 
             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100">
               <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-4">
-                Core Curriculum Modules
+                Core Curriculum Highlights
               </h2>
               <div className="flex flex-wrap gap-2.5">
                 {course.highlights.map((item) => (
@@ -384,7 +340,7 @@ export default function CourseDetailPage() {
                   <span>Call +91 98448 56288</span>
                 </a>
                 <Link
-                  to={`/contact-us/?course=${encodeURIComponent(enrollLabel)}`}
+                  to={`/contact-us/?course=${encodeURIComponent(course.contactOption)}`}
                   className="w-full py-3 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
                 >
                   <span>Request Batch Details</span>
@@ -396,7 +352,7 @@ export default function CourseDetailPage() {
         </div>
       </section>
 
-      {/* 4. Explore Other Courses */}
+      {/* 5. Explore Other Courses */}
       <section className="py-12 sm:py-16 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -460,4 +416,3 @@ export default function CourseDetailPage() {
     </div>
   );
 }
-

@@ -52,17 +52,28 @@ function CourseCard({ course, index }) {
         </Link>
         <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{course.shortDesc}</p>
 
-        {/* Sub-tracks quick links if applicable */}
-        {course.subTracks && (
+        {/* Styles or Levels chips if applicable */}
+        {course.styles && (
           <div className="flex flex-wrap gap-1.5 mb-5">
-            {course.subTracks.map((track) => (
-              <Link
-                key={track.slug}
-                to={`/courses/${course.slug}/${track.slug}`}
-                className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-50 text-gray-700 hover:text-primary border border-gray-200/70 hover:border-blue-200 transition-colors"
+            {course.styles.map((style) => (
+              <span
+                key={style.name}
+                className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-gray-700 border border-gray-200/70"
               >
-                {track.letter}) {track.shortName}
-              </Link>
+                {style.name}
+              </span>
+            ))}
+          </div>
+        )}
+        {course.levels && (
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {course.levels.map((level) => (
+              <span
+                key={level.name}
+                className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-gray-700 border border-gray-200/70"
+              >
+                {level.name}
+              </span>
             ))}
           </div>
         )}

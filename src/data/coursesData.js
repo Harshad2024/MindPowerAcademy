@@ -33,12 +33,10 @@ export const COURSES_DATA = [
       'Personalized stroke correction and guided practice sheets',
     ],
     enrollText: 'Enroll Now and take the first step toward a better you!',
-    subTracks: [
+    styles: [
       {
-        slug: 'simple-handwriting',
-        letter: 'a',
-        shortName: 'Simple Handwriting',
-        title: 'Simple Handwriting Course',
+        name: 'Simple Handwriting',
+        title: 'Simple Handwriting',
         motto: '"Write Clearly, Impress Instantly!"',
         text: 'Simple handwriting is the foundation of effective communication. Learn how to form individual print letters with clarity, precision, and balanced spacing. Perfect for young students, beginners, and anyone looking to strengthen their writing basics.',
         focusPoints: [
@@ -47,13 +45,10 @@ export const COURSES_DATA = [
           'Clean baseline alignment and crisp readability',
         ],
         idealFor: 'Primary & middle school students, beginners, and anyone rebuilding writing clarity from the basics.',
-        cta: 'Join Now to make every word stand out!',
       },
       {
-        slug: 'cursive-handwriting',
-        letter: 'b',
-        shortName: 'Cursive Handwriting',
-        title: 'Cursive Handwriting Course',
+        name: 'Cursive Handwriting',
+        title: 'Cursive Handwriting',
         motto: '"Flowing Elegance in Every Stroke!"',
         text: 'Cursive handwriting is more than just writing—it is an art. This course teaches you how to connect letters smoothly in a continuous, flowing style, enhancing natural rhythm, fine-motor coordination, and aesthetic appeal.',
         focusPoints: [
@@ -62,13 +57,10 @@ export const COURSES_DATA = [
           'Balanced ascenders, descenders, and graceful letterforms',
         ],
         idealFor: 'Students and learners wanting flowing, refined cursive script with better hand-eye coordination.',
-        cta: 'Enroll Today and make your words graceful and captivating!',
       },
       {
-        slug: 'running-handwriting',
-        letter: 'c',
-        shortName: 'Running Handwriting',
-        title: 'Running Handwriting Course',
+        name: 'Running Handwriting',
+        title: 'Running Handwriting',
         motto: '"Master the Speed of Thought with Running Handwriting!"',
         text: 'Running handwriting combines high writing speed with crisp legibility, making it ideal for fast lecture note-taking, board/competitive exams, and daily professional use. Learn how to write quickly without letting your letters break down.',
         focusPoints: [
@@ -77,7 +69,6 @@ export const COURSES_DATA = [
           'Techniques to eliminate wrist tension during long writing sessions',
         ],
         idealFor: 'High school, college students, exam aspirants, and professionals who take frequent notes.',
-        cta: 'Sign Up Now to write faster and smarter!',
       },
     ],
   },
@@ -146,38 +137,6 @@ export const COURSES_DATA = [
     enrollText: 'Join the Journey of Discovery – Register Now!',
   },
   {
-    slug: 'memory-skills',
-    category: 'mind-memory',
-    badge: 'Master Memory Skills',
-    color: '#7C3AED',
-    shortTitle: 'Memory Skills Course',
-    title: 'Memory Skills Course',
-    contactOption: 'Memory Skills',
-    tagline: 'Supercharge Your Brainpower – Master Memory Skills!',
-    shortDesc:
-      'Master memory-boosting techniques for better retention, faster learning, and sharper recall in studies and daily life.',
-    fullDesc:
-      'Struggling to retain lessons, dates, concepts, or everyday details? Learn proven mental techniques to boost concentration, organize information visually, and recall facts effortlessly. Our Memory Skills Course helps students and adults think sharper and study smarter.',
-    img: '/images/memory-skills-course.jpg',
-    highlights: [
-      'Mnemonic Memory Systems',
-      'Mind Mapping & Visual Association',
-      'Instant Recall Techniques for Exams',
-    ],
-    whoIsItFor: [
-      'School and college students preparing for board or competitive exams',
-      'Professionals wanting quicker recall of names, presentations, and facts',
-      'Anyone seeking sharper focus and active mental fitness',
-    ],
-    benefits: [
-      'Replace rote memorization with vivid visual and associative recall',
-      'Retain lists, formulas, vocabulary, and long chapters faster',
-      'Strengthen focus, concentration, and study confidence',
-      'Practical memory drills you can apply immediately',
-    ],
-    enrollText: 'Join the Journey of Discovery – Register Now!',
-  },
-  {
     slug: 'pendulum-dowsing',
     category: 'personality-healing',
     badge: 'Find Your Inner Guide',
@@ -210,6 +169,38 @@ export const COURSES_DATA = [
     enrollText: 'Register Now and let your intuition lead the way!',
   },
   {
+    slug: 'memory-skills',
+    category: 'mind-memory',
+    badge: 'Master Memory Skills',
+    color: '#7C3AED',
+    shortTitle: 'Memory Skills Course',
+    title: 'Memory Skills Course',
+    contactOption: 'Memory Skills',
+    tagline: 'Supercharge Your Brainpower – Master Memory Skills!',
+    shortDesc:
+      'Master memory-boosting techniques for better retention, faster learning, and sharper recall in studies and daily life.',
+    fullDesc:
+      'Struggling to retain lessons, dates, concepts, or everyday details? Learn proven mental techniques to boost concentration, organize information visually, and recall facts effortlessly. Our Memory Skills Course helps students and adults think sharper and study smarter.',
+    img: '/images/memory-skills-course.jpg',
+    highlights: [
+      'Mnemonic Memory Systems',
+      'Mind Mapping & Visual Association',
+      'Instant Recall Techniques for Exams',
+    ],
+    whoIsItFor: [
+      'School and college students preparing for board or competitive exams',
+      'Professionals wanting quicker recall of names, presentations, and facts',
+      'Anyone seeking sharper focus and active mental fitness',
+    ],
+    benefits: [
+      'Replace rote memorization with vivid visual and associative recall',
+      'Retain lists, formulas, vocabulary, and long chapters faster',
+      'Strengthen focus, concentration, and study confidence',
+      'Practical memory drills you can apply immediately',
+    ],
+    enrollText: 'Join the Journey of Discovery – Register Now!',
+  },
+  {
     slug: 'english-grammar',
     category: 'writing-language',
     badge: 'Speak Fluently',
@@ -221,7 +212,7 @@ export const COURSES_DATA = [
     shortDesc:
       'Master English Grammar from fundamentals to advanced fluency with expert-guided classes and build strong communication skills.',
     fullDesc:
-      'Master English Grammar with structured, easy-to-follow classes tailored to your current level. Whether you are starting from foundational sentence rules or aiming for polished professional communication, choose between Basic and Advanced tracks to write error-free English and speak with confidence.',
+      'Master English Grammar with structured, easy-to-follow classes tailored to your current level. Whether you are starting from foundational sentence rules or aiming for polished professional communication, explore both Basic and Advanced levels to write error-free English and speak with confidence.',
     img: '/images/english-grammer-course.png',
     highlights: [
       'Basic Grammar (Parts of Speech, Tenses)',
@@ -240,36 +231,30 @@ export const COURSES_DATA = [
       'Step-by-step practice exercises suited to your pace',
     ],
     enrollText: 'Join now and transform your language skills today!',
-    subTracks: [
+    levels: [
       {
-        slug: 'basic-grammar',
-        letter: 'a',
-        shortName: 'Basic Grammar',
+        name: 'Basic Grammar',
         title: 'Basic Grammar',
         motto: '"Master the Foundation of English!"',
-        text: 'Our Basic Grammar track is ideal for beginners and learners who want to strengthen core fundamentals. Build clarity on parts of speech, sentence types, core tenses, articles, and everyday usage so you can form clean, accurate sentences effortlessly.',
+        text: 'Our Basic Grammar level is ideal for beginners and learners who want to strengthen core fundamentals. Build clarity on parts of speech, sentence types, core tenses, articles, and everyday usage so you can form clean, accurate sentences effortlessly.',
         focusPoints: [
           'Nouns, pronouns, verbs, adjectives, adverbs, and prepositions',
           'Fundamental tenses and subject-verb agreement made simple',
           'Building clear, grammatically sound everyday sentences',
         ],
         idealFor: 'Beginners, school students, and learners wanting a solid, stress-free foundation in English.',
-        cta: 'Start your journey today and build a strong foundation in English!',
       },
       {
-        slug: 'advanced-grammar',
-        letter: 'b',
-        shortName: 'Advanced Grammar',
+        name: 'Advanced Grammar',
         title: 'Advanced Grammar',
         motto: '"Take Your English to the Next Level!"',
-        text: 'Dive deeper into the nuances of English with our Advanced Grammar track. Designed for students, competitive aspirants, and professionals seeking mastery over active/passive voice, reported speech, complex clauses, conditionals, and persuasive writing.',
+        text: 'Dive deeper into the nuances of English with our Advanced Grammar level. Designed for students, competitive aspirants, and professionals seeking mastery over active/passive voice, reported speech, complex clauses, conditionals, and persuasive writing.',
         focusPoints: [
           'Complex sentence structures, clauses, modifiers, and conditionals',
           'Active & passive voice, direct & indirect speech, and nuanced tense shifts',
           'Polished formal writing, editing skills, and confident fluency',
         ],
         idealFor: 'High-school/college students, professionals, and speakers aiming for fluent, polished English.',
-        cta: 'Elevate your English today – enroll in our Advanced Grammar program!',
       },
     ],
   },
@@ -342,9 +327,3 @@ export const COURSES_DATA = [
 export function getCourseBySlug(slug) {
   return COURSES_DATA.find((c) => c.slug === slug);
 }
-
-export function getSubTrackBySlug(course, subSlug) {
-  if (!course?.subTracks || !subSlug) return null;
-  return course.subTracks.find((t) => t.slug === subSlug) || null;
-}
-

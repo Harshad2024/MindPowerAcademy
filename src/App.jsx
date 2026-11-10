@@ -43,13 +43,11 @@ export default function App() {
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/about-us/" element={<AboutUs />} />
 
-              {/* Courses */}
+              {/* Courses: Overview & 8 Individual Course Pages */}
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/courses/" element={<CoursesPage />} />
               <Route path="/courses/:courseSlug" element={<CourseDetailPage />} />
               <Route path="/courses/:courseSlug/" element={<CourseDetailPage />} />
-              <Route path="/courses/:courseSlug/:subTrackSlug" element={<CourseDetailPage />} />
-              <Route path="/courses/:courseSlug/:subTrackSlug/" element={<CourseDetailPage />} />
 
               {/* Workshops: Upcoming & Past Events */}
               <Route path="/upcoming-events" element={<UpcomingEvents />} />
