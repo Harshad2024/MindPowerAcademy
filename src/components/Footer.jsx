@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FiMail, FiPhone, FiMapPin, FiInstagram, FiFacebook, FiYoutube } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { COURSES_DATA } from '../data/coursesData';
 
 export default function Footer() {
   return (
@@ -109,32 +110,17 @@ export default function Footer() {
           {/* Our Courses */}
           <div>
             <h4 className="text-lg font-bold mb-5 tracking-wide text-white">Our Courses</h4>
-            <ul className="space-y-3 text-sm text-blue-100">
-              <li>
-                <Link to="/courses/" className="hover:text-white hover:underline transition-colors">
-                  Personality Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses/" className="hover:text-white hover:underline transition-colors">
-                  English Grammar
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses/" className="hover:text-white hover:underline transition-colors">
-                  Handwriting Improvement
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses/" className="hover:text-white hover:underline transition-colors">
-                  Calligraphy Course
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses/" className="hover:text-white hover:underline transition-colors">
-                  Memory Skills & Graphology
-                </Link>
-              </li>
+            <ul className="space-y-2.5 text-sm text-blue-100">
+              {COURSES_DATA.map((course) => (
+                <li key={course.slug}>
+                  <Link
+                    to={`/courses/${course.slug}/`}
+                    className="hover:text-white hover:underline transition-colors"
+                  >
+                    {course.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

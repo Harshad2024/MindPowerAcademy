@@ -46,6 +46,10 @@ export default function App() {
               {/* Courses */}
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/courses/" element={<CoursesPage />} />
+              <Route path="/courses/:courseSlug" element={<CourseDetailPage />} />
+              <Route path="/courses/:courseSlug/" element={<CourseDetailPage />} />
+              <Route path="/courses/:courseSlug/:subTrackSlug" element={<CourseDetailPage />} />
+              <Route path="/courses/:courseSlug/:subTrackSlug/" element={<CourseDetailPage />} />
 
               {/* Workshops: Upcoming & Past Events */}
               <Route path="/upcoming-events" element={<UpcomingEvents />} />

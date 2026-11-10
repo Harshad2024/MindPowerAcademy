@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   FiPhone,
@@ -27,7 +28,12 @@ const COURSE_OPTIONS = [
   'Select Course',
   'Personality Development',
   'Handwriting Improvement',
+  'Handwriting Improvement - Simple Handwriting',
+  'Handwriting Improvement - Cursive Handwriting',
+  'Handwriting Improvement - Running Handwriting',
   'English Grammar',
+  'English Grammar - Basic Grammar',
+  'English Grammar - Advanced Grammar',
   'Calligraphy Course',
   'Graphology',
   'Memory Skills',
@@ -60,16 +66,29 @@ const FAQS = [
 ];
 
 export default function ContactUs() {
+  const [searchParams] = useSearchParams();
+  const requestedCourse = searchParams.get('course');
+  const initialCourse =
+    requestedCourse && COURSE_OPTIONS.includes(requestedCourse)
+      ? requestedCourse
+      : 'Select Course';
+
   const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    course: 'Select Course',
+    course: initialCourse,
     message: '',
   });
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
   const [openFaq, setOpenFaq] = useState(0);
+
+  useEffect(() => {
+    if (requestedCourse && COURSE_OPTIONS.includes(requestedCourse)) {
+      setFormData((prev) => ({ ...prev, course: requestedCourse }));
+    }
+  }, [requestedCourse]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));

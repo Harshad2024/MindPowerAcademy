@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { FiMail, FiPhone, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMenu, FiX, FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import { FaInstagram, FaFacebookF, FaYoutube, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
+import { COURSES_DATA } from '../../data/coursesData';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
   const location = useLocation();
 
@@ -18,6 +20,7 @@ export default function Navbar() {
   // Close mobile drawer on route change
   useEffect(() => {
     setMobileOpen(false);
+    setCoursesOpen(false);
     setWorkshopOpen(false);
   }, [location.pathname]);
 
@@ -29,9 +32,7 @@ export default function Navbar() {
     location.pathname === '/about-us' ||
     location.pathname === '/about-us/';
 
-  const isCoursesActive =
-    location.pathname === '/courses' ||
-    location.pathname === '/courses/';
+  const isCoursesActive = location.pathname.startsWith('/courses');
 
   const isWorkshopsActive =
     location.pathname.startsWith('/upcoming-events') ||
@@ -173,17 +174,68 @@ export default function Navbar() {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink
+            {/* Courses Dropdown */}
+            <li className="relative group">
+              <Link
                 to="/courses/"
-                className={() =>
-                  `transition-colors duration-200 hover:text-primary ${
-                    isCoursesActive ? 'text-primary font-bold' : 'text-gray-700'
-                  }`
-                }
+                className={`flex items-center gap-1.5 transition-colors py-2 font-semibold ${
+                  isCoursesActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                }`}
               >
-                Courses
-              </NavLink>
+                <span>Courses</span>
+                <FiChevronDown className="transition-transform group-hover:rotate-180" />
+              </Link>
+              <div className="absolute top-full md:-left-20 lg:-left-32 mt-1 w-[560px] max-w-[90vw] bg-white shadow-2xl rounded-2xl border border-gray-100 overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-slate-50 px-5 py-3 border-b border-gray-100 flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                    All Courses Directory ({COURSES_DATA.length})
+                  </span>
+                  <Link
+                    to="/courses/"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
+                  >
+                    <span>View Overview</span>
+                    <FiArrowRight />
+                  </Link>
+                </div>
+                <div className="p-4 grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  {COURSES_DATA.map((course) => {
+                    const isCourseCurrent = location.pathname.startsWith(`/courses/${course.slug}`);
+                    return (
+                      <div key={course.slug} className="rounded-xl p-2 hover:bg-blue-50/60 transition-colors">
+                        <Link
+                          to={`/courses/${course.slug}/`}
+                          className={`block text-sm font-bold transition-colors ${
+                            isCourseCurrent ? 'text-primary' : 'text-gray-800 hover:text-primary'
+                          }`}
+                        >
+                          {course.title}
+                        </Link>
+                        {course.subTracks && (
+                          <div className="mt-1.5 pl-2.5 border-l-2 border-primary/20 space-y-1">
+                            {course.subTracks.map((track) => {
+                              const isTrackCurrent = location.pathname.includes(`/${track.slug}`);
+                              return (
+                                <Link
+                                  key={track.slug}
+                                  to={`/courses/${course.slug}/${track.slug}`}
+                                  className={`block text-xs transition-colors ${
+                                    isTrackCurrent
+                                      ? 'text-primary font-bold'
+                                      : 'text-gray-600 hover:text-primary'
+                                  }`}
+                                >
+                                  {track.letter}) {track.shortName}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </li>
 
             {/* Workshops Dropdown */}
@@ -283,15 +335,66 @@ export default function Navbar() {
             >
               About Us
             </Link>
-            <Link
-              to="/courses/"
-              onClick={() => setMobileOpen(false)}
-              className={`block py-2 text-base font-semibold ${
-                isCoursesActive ? 'text-primary font-bold' : 'text-gray-700'
-              }`}
-            >
-              Courses
-            </Link>
+            <div>
+              <button
+                type="button"
+                className={`w-full flex justify-between items-center py-2 text-base font-semibold ${
+                  isCoursesActive ? 'text-primary font-bold' : 'text-gray-700'
+                }`}
+                onClick={() => setCoursesOpen(!coursesOpen)}
+              >
+                <span>Courses</span>
+                <FiChevronDown className={`transition-transform ${coursesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {coursesOpen && (
+                <div className="pl-4 space-y-2.5 pt-1 pb-2 border-l-2 border-primary/20 ml-2">
+                  <Link
+                    to="/courses/"
+                    onClick={() => setMobileOpen(false)}
+                    className={`block py-1 text-sm font-bold ${
+                      location.pathname === '/courses' || location.pathname === '/courses/'
+                        ? 'text-primary'
+                        : 'text-gray-800 hover:text-primary'
+                    }`}
+                  >
+                    All Courses Overview
+                  </Link>
+                  {COURSES_DATA.map((course) => (
+                    <div key={course.slug} className="space-y-1">
+                      <Link
+                        to={`/courses/${course.slug}/`}
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-1 text-sm font-medium ${
+                          location.pathname.startsWith(`/courses/${course.slug}`)
+                            ? 'text-primary font-bold'
+                            : 'text-gray-700 hover:text-primary'
+                        }`}
+                      >
+                        {course.title}
+                      </Link>
+                      {course.subTracks && (
+                        <div className="pl-3 space-y-1 border-l border-gray-200 ml-1">
+                          {course.subTracks.map((track) => (
+                            <Link
+                              key={track.slug}
+                              to={`/courses/${course.slug}/${track.slug}`}
+                              onClick={() => setMobileOpen(false)}
+                              className={`block py-0.5 text-xs ${
+                                location.pathname.includes(`/${track.slug}`)
+                                  ? 'text-primary font-bold'
+                                  : 'text-gray-500 hover:text-primary'
+                              }`}
+                            >
+                              {track.letter}) {track.shortName}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <div>
               <button
