@@ -1,136 +1,29 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
-import { FiCheck, FiArrowRight, FiPhone } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiLayers, FiPhone } from 'react-icons/fi';
 import Seo from '../components/common/Seo';
-
-const COURSES = [
-  {
-    id: 'handwriting',
-    badge: 'Transform Your Life',
-    title: 'Handwriting Improvement Course',
-    tagline: 'Transform Your Handwriting, Transform Your Life!',
-    desc: 'Unlock the secrets to writing with speed, elegance, and clarity. Our Handwriting Improvement Course is designed to enhance your writing style, boost your confidence, and leave a lasting impression. Whether it is school, work, or personal communication, master the art of beautiful handwriting.',
-    img: '/images/handwriting-improvement-course.png',
-    types: ['Simple Handwriting', 'Cursive Handwriting', 'Running Handwriting'],
-    enrollText: 'Enroll Now and take the first step toward a better you!',
-    subTracks: [
-      {
-        title: 'Simple Handwriting Course',
-        motto: '"Write Clearly, Impress Instantly!"',
-        text: 'Simple handwriting is the foundation of effective communication. Learn how to form letters with clarity, precision, and simplicity. Perfect for students, professionals, and anyone looking to enhance their writing basics.',
-        cta: 'Join Now to make every word stand out!',
-      },
-      {
-        title: 'Cursive Handwriting Course',
-        motto: '"Flowing Elegance in Every Stroke!"',
-        text: 'Cursive handwriting is more than just writing—it is an art. This course teaches you how to write beautifully in a continuous, flowing style, enhancing speed, coordination, and aesthetic appeal.',
-        cta: 'Enroll Today and make your words graceful and captivating!',
-      },
-      {
-        title: 'Running Handwriting Course',
-        motto: '"Master the Speed of Thought with Running Handwriting!"',
-        text: 'Running handwriting combines speed and legibility, making it ideal for note-taking, exams, and professional use. Learn how to write quickly without compromising clarity.',
-        cta: 'Sign Up Now to write faster and smarter!',
-      },
-    ],
-  },
-  {
-    id: 'calligraphy',
-    badge: 'Art in Every Stroke',
-    title: 'Calligraphy Course',
-    tagline: 'Art in Every Stroke – Master the Elegance of Calligraphy!',
-    desc: 'Dive into the mesmerizing world of artistic lettering. Our Calligraphy Course offers step-by-step guidance to help you create stunning designs and professional-quality scripts. Perfect for beginners and enthusiasts looking to make their mark in this timeless art.',
-    img: '/images/calligraphy.png',
-    types: ['Foundational Lettering', 'Brush & Dip Pen Strokes', 'Artistic Flourishes & Compositions'],
-    enrollText: 'Secure Your Spot Today and make your writing a masterpiece!',
-  },
-  {
-    id: 'graphology',
-    badge: 'Handwriting Analysis',
-    title: 'Graphology Course',
-    tagline: 'Discover the Power of Handwriting Analysis!',
-    desc: 'Learn how to decode personalities, behaviors, and emotions through handwriting. Our Graphology Course empowers you with skills to understand and analyze the hidden messages in strokes and curves. Ideal for psychology enthusiasts, HR professionals, and curious minds.',
-    img: '/images/Graphology-course.png',
-    types: ['Stroke & Slant Analysis', 'Subconscious Trait Profiling', 'Emotional & Behavior Assessment'],
-    enrollText: 'Join the Journey of Discovery – Register Now!',
-  },
-  {
-    id: 'memory-skills',
-    badge: 'Master Memory Skills',
-    title: 'Memory Skills Course',
-    tagline: 'Supercharge Your Brainpower – Master Memory Skills!',
-    desc: 'Struggling to remember important details? Learn proven techniques to enhance your memory, retain information effortlessly, and achieve academic or professional success. Our Memory Skills Course is your gateway to sharper thinking and better results.',
-    img: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800&q=80',
-    types: ['Mnemonic Memory Systems', 'Mind Mapping & Visual Association', 'Instant Recall Techniques for Exams'],
-    enrollText: 'Join the Journey of Discovery – Register Now!',
-  },
-  {
-    id: 'pendulum-dowsing',
-    badge: 'Find Your Inner Guide',
-    title: 'Pendulum Dowsing Course',
-    tagline: 'Find Your Inner Guide with Pendulum Dowsing!',
-    desc: 'Discover the ancient art of dowsing to unlock answers, energy, and balance in your life. Our Pendulum Dowsing Course provides hands-on training to develop your intuitive skills and achieve clarity in decision-making.',
-    img: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80',
-    types: ['Pendulum Calibration & Micro-Movements', 'Intuitive Energy Alignment', 'Decision-Making & Clarity Practice'],
-    enrollText: 'Register Now and let your intuition lead the way!',
-  },
-  {
-    id: 'english-grammar',
-    badge: 'Speak Fluently',
-    title: 'English Grammar Course',
-    tagline: 'Speak Fluently, Write Accurately, Communicate with Confidence!',
-    desc: 'Master English Grammar with our expert-guided classes designed for every level. From beginners to advanced learners, we offer tailored programs to help you speak fluently, write error-free sentences, and boost your communication skills.',
-    img: '/images/english-grammer-course.png',
-    types: ['Basic Grammar (Parts of Speech, Tenses)', 'Advanced Grammar (Complex Structures, Voice & Clauses)', 'Spoken Fluency & Vocabulary Drills'],
-    enrollText: 'Join now and transform your language skills today!',
-    subTracks: [
-      {
-        title: 'Basic Grammar',
-        motto: '"Master the Foundation of English!"',
-        text: 'Our Basic Grammar course is perfect for beginners and those looking to strengthen their fundamentals. Understand the building blocks of English: nouns, verbs, tenses, and more to create clear sentences effortlessly.',
-        cta: 'Start your journey today and build a strong foundation in English!',
-      },
-      {
-        title: 'Advanced Grammar',
-        motto: '"Take Your English to the Next Level!"',
-        text: 'Dive deep into the intricacies of English with our Advanced Grammar course. Perfect for professionals, students, and enthusiasts aiming for mastery in complex structures, polished writing, and persuasive communication.',
-        cta: 'Elevate your English today – enroll in our Advanced Grammar program!',
-      },
-    ],
-  },
-  {
-    id: 'personality-development',
-    badge: 'Personality',
-    title: 'Personality Development Course',
-    tagline: 'Unleash the Best Version of Yourself!',
-    desc: 'Stand out in any room and shine with confidence. Our Personality Development Course focuses on communication skills, body language, and self-awareness, ensuring you make a lasting impression wherever you go.',
-    img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80',
-    types: ['Overcoming Stage Fear & Hesitation', 'Commanding Body Language & Grooming', 'Public Speaking & Interpersonal Skills'],
-    enrollText: 'Take the Leap – Join Now to redefine yourself!',
-  },
-  {
-    id: 'quantum-healing',
-    badge: 'Find Your Inner Guide',
-    title: 'Quantum Healing Course',
-    tagline: 'Harness Energy, Heal Holistically!',
-    desc: 'Explore the transformative power of Quantum Healing to promote wellness, reduce stress, and align your energy. This course combines science and spirituality to help you unlock a deeper sense of purpose and health.',
-    img: '/images/quantum-healing-course.png',
-    types: ['Holistic Energy Alignment', 'Stress Release & Mind Harmonization', 'Vitality & Mind-Body Health Practices'],
-    enrollText: 'Sign Up Today to embrace a life of balance and vitality!',
-  },
-];
+import { COURSE_CATEGORIES, COURSES_DATA } from '../data/coursesData';
 
 export default function CoursesPage() {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredCourses =
+    selectedCategory === 'all'
+      ? COURSES_DATA
+      : COURSES_DATA.filter((course) => course.category === selectedCategory);
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       <Seo
         title="Courses"
-        description="Explore eight courses at Mind Power Academy: handwriting improvement, calligraphy, graphology, memory skills, personality development, English grammar, pendulum dowsing and quantum healing."
+        description="Explore all 8 courses at Mind Power Academy: handwriting improvement (simple, cursive, running), calligraphy, graphology, memory skills, pendulum dowsing, English grammar (basic & advanced), personality development and quantum healing."
         path="/courses"
       />
+
       {/* 1. Page Banner */}
-      <section className="relative overflow-hidden py-14 sm:py-20 md:py-28 text-white">
+      <section className="relative overflow-hidden py-14 sm:py-20 md:py-24 text-white">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/page-banner.jpg"
@@ -147,127 +40,156 @@ export default function CoursesPage() {
             Explore <span className="underline decoration-white/40">Our Courses</span>
           </h1>
           <p className="mt-3 sm:mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
-            Explore our expert-led courses and start your journey today! Choose the course that fits your goals and unlock your true potential.
+            Choose a program below to view complete curriculum details, sub-courses, and enrollment options tailored to your goals.
           </p>
         </div>
       </section>
 
-      {/* 2. Main Course Rows matching official layout */}
-      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
-        {COURSES.map((course, idx) => (
-          <div key={course.id} className="space-y-6">
-            {/* Primary Course Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center p-5 sm:p-6 md:p-10">
-                {/* Course Image */}
-                <div className={`lg:col-span-5 relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-md">
-                    <img
-                      src={course.img}
-                      alt={course.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-md">
-                      {course.badge}
-                    </span>
-                  </div>
-                </div>
+      {/* 2. Category Filter Bar */}
+      <section className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5 sm:justify-center">
+            {COURSE_CATEGORIES.map((category) => {
+              const isActive = selectedCategory === category.id;
+              const count =
+                category.id === 'all'
+                  ? COURSES_DATA.length
+                  : COURSES_DATA.filter((c) => c.category === category.id).length;
 
-                {/* Course Content */}
-                <div className={`lg:col-span-7 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900">
-                    {course.title}
-                  </h2>
-                  <p className="text-primary font-semibold text-xs sm:text-sm md:text-base mt-1.5 mb-3">
-                    "{course.tagline}"
-                  </p>
-                  <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed mb-6">
-                    {course.desc}
-                  </p>
-
-                  {/* Bullet Highlights */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {course.types.map((type) => (
-                      <span
-                        key={type}
-                        className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-900 border border-blue-200/60 px-3 py-1.5 rounded-full text-xs font-semibold"
-                      >
-                        <FiCheck className="text-primary text-sm shrink-0" />
-                        <span>{type}</span>
-                      </span>
-                    ))}
-                  </div>
-
-                  {course.enrollText && (
-                    <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-5">
-                      {course.enrollText}
-                    </p>
-                  )}
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-                    <Link
-                      to="/contact-us/"
-                      className="px-6 py-3 rounded-full font-bold text-sm bg-primary hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all text-center justify-center"
-                    >
-                      Register Now
-                    </Link>
-                    <a
-                      href={`https://wa.me/919844856288?text=Hello!%20I%20am%20interested%20in%20enrolling%20in%20the%20${encodeURIComponent(
-                        course.title
-                      )}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-5 py-3 rounded-full font-bold text-sm bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center gap-2 shadow-md transition-all text-center"
-                    >
-                      <FaWhatsapp className="text-base" />
-                      <span>WhatsApp Inquiry</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Sub-Tracks (e.g. Simple, Cursive, Running or Basic, Advanced) */}
-            {course.subTracks && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 pt-2">
-                {course.subTracks.map((sub, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="bg-white rounded-2xl p-5 sm:p-6 border border-blue-100 shadow-md flex flex-col justify-between hover:shadow-lg transition-shadow"
-                  >
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">{sub.title}</h3>
-                      <p className="text-primary text-xs font-semibold mb-3">{sub.motto}</p>
-                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
-                        {sub.text}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-medium text-gray-400 mb-3">{sub.cta}</p>
-                      <Link
-                        to="/contact-us/"
-                        className="inline-block w-full text-center py-2.5 px-4 rounded-xl bg-blue-50 hover:bg-primary hover:text-white text-primary text-xs font-bold uppercase tracking-wider transition-colors"
-                      >
-                        Enroll Now
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border ${
+                    isActive
+                      ? 'bg-primary text-white border-primary shadow-md'
+                      : 'bg-slate-50 text-gray-700 border-gray-200 hover:border-primary/50 hover:text-primary'
+                  }`}
+                >
+                  {category.label} ({count})
+                </button>
+              );
+            })}
           </div>
-        ))}
+        </div>
       </section>
 
-      {/* 3. Bottom CTA */}
+      {/* 3. Courses Directory Grid */}
+      <section className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredCourses.map((course, idx) => (
+            <motion.article
+              key={course.slug}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: (idx % 3) * 0.08 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col"
+            >
+              {/* Thumbnail */}
+              <Link to={`/courses/${course.slug}/`} className="relative h-52 overflow-hidden bg-slate-100 block group">
+                <img
+                  src={course.img}
+                  alt={course.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span
+                  className="absolute top-3.5 left-3.5 text-white text-xs font-bold px-3.5 py-1 rounded-full shadow-md"
+                  style={{ backgroundColor: course.color }}
+                >
+                  {course.badge}
+                </span>
+                {course.subTracks && (
+                  <span className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    <FiLayers className="text-xs" />
+                    <span>{course.subTracks.length} Sub-Courses</span>
+                  </span>
+                )}
+              </Link>
+
+              {/* Card Body */}
+              <div className="p-6 flex flex-col flex-1">
+                <Link to={`/courses/${course.slug}/`} className="group">
+                  <h2 className="text-xl font-extrabold text-gray-900 group-hover:text-primary transition-colors">
+                    {course.title}
+                  </h2>
+                </Link>
+                <p className="text-primary font-semibold text-xs mt-1 mb-3">
+                  "{course.tagline}"
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-1">
+                  {course.shortDesc}
+                </p>
+
+                {/* Sub-courses OR Key Highlights */}
+                {course.subTracks ? (
+                  <div className="mb-5 bg-slate-50 rounded-2xl p-3.5 border border-blue-100">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-2">
+                      Included Tracks
+                    </p>
+                    <div className="flex flex-col gap-1.5">
+                      {course.subTracks.map((track) => (
+                        <Link
+                          key={track.slug}
+                          to={`/courses/${course.slug}/${track.slug}`}
+                          className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-white hover:bg-blue-50 border border-gray-100 hover:border-blue-200 text-xs font-semibold text-gray-800 hover:text-primary transition-colors"
+                        >
+                          <span>
+                            {track.letter}) {track.shortName}
+                          </span>
+                          <FiArrowRight className="text-primary shrink-0" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-5 space-y-1.5">
+                    {course.highlights.slice(0, 3).map((item) => (
+                      <div key={item} className="flex items-center gap-2 text-xs text-gray-600">
+                        <FiCheck className="text-primary shrink-0" />
+                        <span className="truncate">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Actions */}
+                <div className="pt-4 border-t border-gray-100 flex items-center gap-2.5">
+                  <Link
+                    to={`/courses/${course.slug}/`}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider bg-primary hover:bg-blue-700 text-white shadow-sm transition-colors"
+                  >
+                    <span>View Course</span>
+                    <FiArrowRight />
+                  </Link>
+                  <Link
+                    to={`/contact-us/?course=${encodeURIComponent(course.contactOption)}`}
+                    className="py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 hover:bg-blue-100 transition-colors text-center"
+                  >
+                    Enroll
+                  </Link>
+                  <a
+                    href={`https://wa.me/919844856288?text=${encodeURIComponent(
+                      `Hello! I am interested in enrolling in the ${course.title}.`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`WhatsApp Inquiry for ${course.title}`}
+                    title="Inquire on WhatsApp"
+                    className="p-2.5 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366] text-[#1da851] hover:text-white transition-colors shrink-0"
+                  >
+                    <FaWhatsapp className="text-base" />
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Bottom CTA */}
       <section className="py-12 sm:py-16 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 text-white p-6 sm:p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">

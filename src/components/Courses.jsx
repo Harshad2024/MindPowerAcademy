@@ -2,65 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 import ImagePlaceholder from './common/ImagePlaceholder';
-
-const courses = [
-  {
-    tag: 'Transform Your Life',
-    title: 'Handwriting Improvement',
-    desc: 'Behind every successful person there is a great Writing and Signature. Improve your handwriting with our expert techniques.',
-    img: '/images/handwriting-improvement-course.png',
-    color: '#3B5BDB',
-  },
-  {
-    tag: 'Art in Every Stroke',
-    title: 'Calligraphy Course',
-    desc: 'Develop the art of beautiful writing with expert guidance. Master various calligraphy styles.',
-    img: '/images/calligraphy.png',
-    color: '#5C4BC1',
-  },
-  {
-    tag: 'Handwriting Analysis',
-    title: 'Graphology Course',
-    desc: 'Understand personality traits through handwriting analysis. A fascinating science of self-discovery.',
-    img: '/images/Graphology-course.png',
-    color: '#2563EB',
-  },
-  {
-    tag: 'Master Memory Skills',
-    title: 'Memory Skill Course',
-    desc: 'Master memory-boosting techniques for better retention and sharper recall in daily life and studies.',
-    img: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=600&q=80',
-    color: '#7C3AED',
-  },
-  {
-    tag: 'Find Your Inner Guide',
-    title: 'Pendulum Dowsing',
-    desc: 'Learn the art of divination to connect with your subconscious and tap into your inner wisdom.',
-    img: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80',
-    color: '#9333EA',
-  },
-  {
-    tag: 'Transform Your Life',
-    title: 'English Grammar Course',
-    desc: 'Master English Grammar with our expert-guided classes and build strong communication skills.',
-    img: '/images/english-grammer-course.png',
-    color: '#1D4ED8',
-  },
-  {
-    tag: 'Build Your Life',
-    title: 'Personality Development',
-    desc: 'Build confidence and enhance your interpersonal skills. Transform your personality for professional and personal success.',
-    img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80',
-    color: '#0369A1',
-  },
-  {
-    tag: 'Heal Holistically',
-    title: 'Quantum Healing Course',
-    desc: 'Learn techniques to promote balance, well-being, and healing through the science of quantum energy.',
-    img: '/images/quantum-healing-course.png',
-    color: '#6D28D9',
-  },
-];
+import { COURSES_DATA } from '../data/coursesData';
 
 function CourseCard({ course, index }) {
   return (
@@ -72,11 +14,14 @@ function CourseCard({ course, index }) {
       className="bg-white rounded-3xl shadow-md card-hover overflow-hidden flex flex-col border border-gray-100"
     >
       {/* Image with fallback */}
-      <div className="relative h-52 overflow-hidden bg-slate-100">
+      <Link
+        to={`/courses/${course.slug}/`}
+        className="relative h-52 overflow-hidden bg-slate-100 block group"
+      >
         <img
           src={course.img}
           alt={course.title}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => {
             e.target.style.display = 'none';
             e.target.nextSibling.style.display = 'flex';
@@ -84,7 +29,7 @@ function CourseCard({ course, index }) {
         />
         <div style={{ display: 'none' }} className="w-full h-full">
           <ImagePlaceholder
-            title={course.title}
+            title={course.shortTitle}
             subtitle="Course thumbnail"
             aspectRatio="h-full w-full"
             className="rounded-none border-none"
@@ -94,23 +39,43 @@ function CourseCard({ course, index }) {
           className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md"
           style={{ backgroundColor: course.color }}
         >
-          {course.tag}
+          {course.badge}
         </span>
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{course.title}</h3>
-        <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{course.desc}</p>
-        <div className="flex gap-3">
+        <Link to={`/courses/${course.slug}/`} className="group">
+          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+            {course.shortTitle}
+          </h3>
+        </Link>
+        <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{course.shortDesc}</p>
+
+        {/* Sub-tracks quick links if applicable */}
+        {course.subTracks && (
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {course.subTracks.map((track) => (
+              <Link
+                key={track.slug}
+                to={`/courses/${course.slug}/${track.slug}`}
+                className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-50 text-gray-700 hover:text-primary border border-gray-200/70 hover:border-blue-200 transition-colors"
+              >
+                {track.letter}) {track.shortName}
+              </Link>
+            ))}
+          </div>
+        )}
+
+        <div className="flex gap-3 mt-auto">
           <Link
-            to="/courses/"
+            to={`/courses/${course.slug}/`}
             className="flex-1 text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-primary bg-blue-50 hover:bg-primary hover:text-white transition-colors"
           >
             Details
           </Link>
           <Link
-            to="/contact-us/"
+            to={`/contact-us/?course=${encodeURIComponent(course.contactOption)}`}
             className="flex-1 text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-primary hover:bg-blue-700 transition-colors"
           >
             Enroll
@@ -140,8 +105,8 @@ export default function Courses() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
-          {courses.map((course, i) => (
-            <CourseCard key={course.title} course={course} index={i} />
+          {COURSES_DATA.map((course, i) => (
+            <CourseCard key={course.slug} course={course} index={i} />
           ))}
         </div>
 

@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import CoursesPage from './pages/CoursesPage';
+import CourseDetailPage from './pages/CourseDetailPage';
 import UpcomingEvents from './pages/UpcomingEvents';
 import PastEvents from './pages/PastEvents';
 import TermsAndConditions from './pages/TermsAndConditions';
