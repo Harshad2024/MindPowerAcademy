@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiPhone, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
@@ -10,7 +10,27 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
   const [workshopOpen, setWorkshopOpen] = useState(false);
+  const [navHeight, setNavHeight] = useState(72);
+  const navRef = useRef(null);
   const location = useLocation();
+
+  // Measure nav height so the spacer keeps content from hiding behind the fixed bar
+  const measureNav = useCallback(() => {
+    if (navRef.current) {
+      setNavHeight(navRef.current.offsetHeight);
+    }
+  }, []);
+
+  useEffect(() => {
+    measureNav();
+    window.addEventListener('resize', measureNav);
+    return () => window.removeEventListener('resize', measureNav);
+  }, [measureNav]);
+
+  // Re-measure when scrolled state changes (padding changes)
+  useEffect(() => {
+    measureNav();
+  }, [scrolled, measureNav]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -64,41 +84,47 @@ export default function Navbar() {
   const isHomeActive = location.pathname === '/';
 
   return (
-    <header className="w-full sticky top-0 z-50">
-      {/* Top Info Bar (Hides on mobile scroll to save screen space) */}
-      <div
-        className={`bg-primary text-white text-xs md:text-sm font-medium transition-all duration-200 ${
-          scrolled ? 'hidden md:block' : 'block'
+    <>
+      {/* ───── Fixed Navbar: always visible at top on ALL devices ───── */}
+      <nav
+        ref={navRef}
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
+          scrolled ? 'shadow-md py-1.5 sm:py-2' : 'shadow-sm py-2 sm:py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center gap-2">
-          <div className="flex items-center gap-2 sm:gap-6 min-w-0 flex-1">
+        {/* Top Info Strip — hidden on mobile when scrolled, always on desktop */}
+        <div
+          className={`max-w-7xl mx-auto px-3 sm:px-4 pb-1.5 transition-all duration-200 ${
+            scrolled ? 'hidden md:flex' : 'flex'
+          } justify-between items-center gap-2 text-xs text-gray-500 border-b border-gray-100 mb-1.5`}
+        >
+          <div className="flex items-center gap-2 sm:gap-5 min-w-0 flex-1">
             <a
               href="mailto:mindpoweracademy77@gmail.com"
-              className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0"
+              className="flex items-center gap-1.5 hover:text-primary transition-colors min-w-0"
               title="mindpoweracademy77@gmail.com"
             >
-              <FiMail className="text-sm shrink-0" />
-              <span className="truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none">
+              <FiMail className="text-xs shrink-0" />
+              <span className="truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none text-[11px] sm:text-xs">
                 mindpoweracademy77@gmail.com
               </span>
             </a>
             <a
               href="tel:+919844856288"
-              className="hidden md:flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0"
+              className="hidden md:flex items-center gap-1.5 hover:text-primary transition-colors shrink-0"
             >
-              <FiPhone className="text-sm" />
-              <span>+91 98448 56288</span>
+              <FiPhone className="text-xs" />
+              <span className="text-xs">+91 98448 56288</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-2 xs:gap-3 sm:gap-3 shrink-0">
             <a
               href="https://www.instagram.com/mindpower__academy/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="text-lg sm:text-xl hover:scale-110 hover:text-pink-300 transition-all duration-200 p-1"
+              className="text-base sm:text-lg hover:scale-110 hover:text-pink-500 transition-all duration-200"
             >
               <FaInstagram />
             </a>
@@ -107,7 +133,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="text-lg sm:text-xl hover:scale-110 hover:text-blue-300 transition-all duration-200 p-1"
+              className="text-base sm:text-lg hover:scale-110 hover:text-blue-600 transition-all duration-200"
             >
               <FaFacebookF />
             </a>
@@ -117,7 +143,7 @@ export default function Navbar() {
               rel="noreferrer"
               aria-label="Location on Google Maps"
               title="Location on Google Maps"
-              className="text-lg sm:text-xl hover:scale-110 hover:text-red-300 transition-all duration-200 p-1"
+              className="text-base sm:text-lg hover:scale-110 hover:text-red-500 transition-all duration-200"
             >
               <FaMapMarkerAlt />
             </a>
@@ -126,7 +152,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="text-lg sm:text-xl hover:scale-110 text-[#25D366] hover:text-[#4AE380] transition-all duration-200 p-1"
+              className="text-base sm:text-lg hover:scale-110 text-[#25D366] hover:text-[#4AE380] transition-all duration-200"
             >
               <FaWhatsapp />
             </a>
@@ -135,27 +161,21 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="text-lg sm:text-xl hover:scale-110 hover:text-red-400 transition-all duration-200 p-1"
+              className="text-base sm:text-lg hover:scale-110 hover:text-red-500 transition-all duration-200"
             >
               <FaYoutube />
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Main Navbar */}
-      <nav
-        className={`bg-white transition-all duration-300 ${
-          scrolled ? 'shadow-md py-2' : 'shadow-sm py-2.5 sm:py-3.5'
-        }`}
-      >
+        {/* Main nav row: Logo + Links + Hamburger */}
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          {/* Logo (Increased size on mobile & desktop) */}
-          <Link to="/" className="flex items-center gap-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
               src="/images/logo.png"
               alt="Mind Power Academy"
-              className="h-14 sm:h-16 md:h-16 w-auto object-contain transition-all"
+              className="h-12 sm:h-14 md:h-14 w-auto object-contain transition-all"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -281,7 +301,7 @@ export default function Navbar() {
               </ul>
             </li>
 
-            {/* Contact Us - Main CTA link */}
+            {/* Contact Us */}
             <li>
               <NavLink
                 to="/contact-us/"
@@ -296,7 +316,7 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Enroll Now CTA */}
+          {/* Enroll Now CTA (Desktop) */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/contact-us/"
@@ -306,7 +326,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button - Blue square icon button matching official site */}
+          {/* Mobile Hamburger Button */}
           <button
             type="button"
             className="md:hidden w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center shadow-md hover:bg-blue-800 transition-colors focus:outline-none shrink-0"
@@ -318,7 +338,10 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Sidebar Navigation (Slide-Over Drawer UI) */}
+      {/* Spacer: pushes page content below the fixed navbar */}
+      <div style={{ height: navHeight }} aria-hidden="true" />
+
+      {/* ───── Mobile Sidebar (Slide-Over Drawer) ───── */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -329,7 +352,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] md:hidden"
               onClick={() => setMobileOpen(false)}
               aria-hidden="true"
             />
@@ -341,7 +364,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[85vw] bg-white z-[60] shadow-2xl flex flex-col md:hidden"
+              className="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[85vw] bg-white z-[80] shadow-2xl flex flex-col md:hidden"
               aria-label="Mobile Navigation"
             >
               {/* Sidebar Header */}
@@ -385,7 +408,7 @@ export default function Navbar() {
                   About Us
                 </Link>
 
-                {/* Courses Accordion in Sidebar */}
+                {/* Courses Accordion */}
                 <div>
                   <button
                     type="button"
@@ -430,7 +453,7 @@ export default function Navbar() {
                   )}
                 </div>
 
-                {/* Workshops Accordion in Sidebar */}
+                {/* Workshops Accordion */}
                 <div>
                   <button
                     type="button"
@@ -520,42 +543,18 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                {/* Social icons row inside sidebar */}
+                {/* Social icons */}
                 <div className="pt-3 border-t border-gray-100 flex items-center justify-around text-xl text-gray-600">
-                  <a
-                    href="https://www.instagram.com/mindpower__academy/"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Instagram"
-                    className="p-2 hover:text-pink-600 transition-colors"
-                  >
+                  <a href="https://www.instagram.com/mindpower__academy/" target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 hover:text-pink-600 transition-colors">
                     <FaInstagram />
                   </a>
-                  <a
-                    href="https://www.facebook.com/share/1C62iHuPPo/"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Facebook"
-                    className="p-2 hover:text-blue-600 transition-colors"
-                  >
+                  <a href="https://www.facebook.com/share/1C62iHuPPo/" target="_blank" rel="noreferrer" aria-label="Facebook" className="p-2 hover:text-blue-600 transition-colors">
                     <FaFacebookF />
                   </a>
-                  <a
-                    href="https://wa.me/919844856288"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="WhatsApp"
-                    className="p-2 text-[#25D366] hover:scale-110 transition-transform"
-                  >
+                  <a href="https://wa.me/919844856288" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="p-2 text-[#25D366] hover:scale-110 transition-transform">
                     <FaWhatsapp />
                   </a>
-                  <a
-                    href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="YouTube"
-                    className="p-2 hover:text-red-600 transition-colors"
-                  >
+                  <a href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0" target="_blank" rel="noreferrer" aria-label="YouTube" className="p-2 hover:text-red-600 transition-colors">
                     <FaYoutube />
                   </a>
                 </div>
@@ -564,6 +563,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
