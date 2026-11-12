@@ -13,6 +13,7 @@ import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
 import UpcomingEvents from './pages/UpcomingEvents';
 import PastEvents from './pages/PastEvents';
+import ServicesPage from './pages/ServicesPage';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Disclaimer from './pages/Disclaimer';
@@ -56,6 +57,10 @@ export default function App() {
               <Route path="/past-events/" element={<PastEvents />} />
               <Route path="/gallery" element={<PastEvents />} />
               <Route path="/gallery/" element={<PastEvents />} />
+
+              {/* Digital Marketing Services */}
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/" element={<ServicesPage />} />
 
               {/* Legal Pages */}
               <Route path="/terms-conditions" element={<TermsAndConditions />} />

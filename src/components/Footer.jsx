@@ -147,7 +147,7 @@ export default function Footer() {
 
             <div className="text-xs text-blue-200 space-y-2 break-words">
               <a
-                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                href="https://maps.app.goo.gl/oufr6JWcfzDFbchv7"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-white transition-colors block"

@@ -81,95 +81,102 @@ export default function Navbar() {
     location.pathname.startsWith('/past-events') ||
     location.pathname.startsWith('/gallery');
 
+  const isServicesActive =
+    location.pathname === '/services' ||
+    location.pathname === '/services/';
+
   const isHomeActive = location.pathname === '/';
 
   return (
     <>
-      {/* ───── Fixed Navbar: always visible at top on ALL devices ───── */}
-      <nav
+      {/* ───── Fixed Header / Navbar: always visible at top on ALL devices ───── */}
+      <header
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
-          scrolled ? 'shadow-md py-1.5 sm:py-2' : 'shadow-sm py-2 sm:py-3'
+        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
+          scrolled ? 'shadow-md' : 'shadow-sm'
         }`}
       >
-        {/* Top Info Strip — hidden on mobile when scrolled, always on desktop */}
+        {/* Top Info Strip (Solid Blue with white text & prominent social icons) */}
         <div
-          className={`max-w-7xl mx-auto px-3 sm:px-4 pb-1.5 transition-all duration-200 ${
-            scrolled ? 'hidden md:flex' : 'flex'
-          } justify-between items-center gap-2 text-xs text-gray-500 border-b border-gray-100 mb-1.5`}
+          className={`bg-primary text-white text-xs md:text-sm font-medium transition-all duration-200 ${
+            scrolled ? 'hidden md:block' : 'block'
+          }`}
         >
-          <div className="flex items-center gap-2 sm:gap-5 min-w-0 flex-1">
-            <a
-              href="mailto:mindpoweracademy77@gmail.com"
-              className="flex items-center gap-1.5 hover:text-primary transition-colors min-w-0"
-              title="mindpoweracademy77@gmail.com"
-            >
-              <FiMail className="text-xs shrink-0" />
-              <span className="truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none text-[11px] sm:text-xs">
-                mindpoweracademy77@gmail.com
-              </span>
-            </a>
-            <a
-              href="tel:+919844856288"
-              className="hidden md:flex items-center gap-1.5 hover:text-primary transition-colors shrink-0"
-            >
-              <FiPhone className="text-xs" />
-              <span className="text-xs">+91 98448 56288</span>
-            </a>
-          </div>
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center gap-2">
+            <div className="flex items-center gap-2 sm:gap-6 min-w-0 flex-1">
+              <a
+                href="mailto:mindpoweracademy77@gmail.com"
+                className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity min-w-0 text-white"
+                title="mindpoweracademy77@gmail.com"
+              >
+                <FiMail className="text-sm shrink-0" />
+                <span className="truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none text-xs sm:text-sm">
+                  mindpoweracademy77@gmail.com
+                </span>
+              </a>
+              <a
+                href="tel:+919844856288"
+                className="hidden md:flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0 text-white"
+              >
+                <FiPhone className="text-sm" />
+                <span>+91 98448 56288</span>
+              </a>
+            </div>
 
-          <div className="flex items-center gap-2 xs:gap-3 sm:gap-3 shrink-0">
-            <a
-              href="https://www.instagram.com/mindpower__academy/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="text-base sm:text-lg hover:scale-110 hover:text-pink-500 transition-all duration-200"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://www.facebook.com/share/1C62iHuPPo/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="text-base sm:text-lg hover:scale-110 hover:text-blue-600 transition-all duration-200"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Location on Google Maps"
-              title="Location on Google Maps"
-              className="text-base sm:text-lg hover:scale-110 hover:text-red-500 transition-all duration-200"
-            >
-              <FaMapMarkerAlt />
-            </a>
-            <a
-              href="https://wa.me/919844856288"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp"
-              className="text-base sm:text-lg hover:scale-110 text-[#25D366] hover:text-[#4AE380] transition-all duration-200"
-            >
-              <FaWhatsapp />
-            </a>
-            <a
-              href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube"
-              className="text-base sm:text-lg hover:scale-110 hover:text-red-500 transition-all duration-200"
-            >
-              <FaYoutube />
-            </a>
+            <div className="flex items-center gap-2.5 xs:gap-3.5 sm:gap-4 shrink-0">
+              <a
+                href="https://www.instagram.com/mindpower__academy/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="text-lg sm:text-xl hover:scale-110 hover:text-pink-300 transition-all duration-200 p-0.5"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1C62iHuPPo/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="text-lg sm:text-xl hover:scale-110 hover:text-blue-200 transition-all duration-200 p-0.5"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                href="https://maps.app.goo.gl/oufr6JWcfzDFbchv7"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Location on Google Maps"
+                title="Location on Google Maps"
+                className="text-lg sm:text-xl hover:scale-110 hover:text-red-300 transition-all duration-200 p-0.5"
+              >
+                <FaMapMarkerAlt />
+              </a>
+              <a
+                href="https://wa.me/919844856288"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className="text-lg sm:text-xl hover:scale-110 text-[#25D366] hover:text-[#4AE380] transition-all duration-200 p-0.5"
+              >
+                <FaWhatsapp />
+              </a>
+              <a
+                href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="text-lg sm:text-xl hover:scale-110 hover:text-red-400 transition-all duration-200 p-0.5"
+              >
+                <FaYoutube />
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Main nav row: Logo + Links + Hamburger */}
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <nav className={`bg-white transition-all duration-300 ${scrolled ? 'py-2' : 'py-2.5 sm:py-3.5'}`}>
+          <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
@@ -314,6 +321,20 @@ export default function Navbar() {
                 Contact Us
               </NavLink>
             </li>
+
+            {/* Services */}
+            <li>
+              <NavLink
+                to="/services/"
+                className={() =>
+                  `transition-colors duration-200 hover:text-primary ${
+                    isServicesActive ? 'text-primary font-bold' : 'text-gray-700'
+                  }`
+                }
+              >
+                Services
+              </NavLink>
+            </li>
           </ul>
 
           {/* Enroll Now CTA (Desktop) */}
@@ -337,6 +358,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+    </header>
 
       {/* Spacer: pushes page content below the fixed navbar */}
       <div style={{ height: navHeight }} aria-hidden="true" />
@@ -505,6 +527,16 @@ export default function Navbar() {
                   Contact Us
                 </Link>
 
+                <Link
+                  to="/services/"
+                  onClick={() => setMobileOpen(false)}
+                  className={`block py-2 text-base font-semibold transition-colors ${
+                    isServicesActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  Services
+                </Link>
+
                 {/* Enroll CTA */}
                 <div className="pt-2">
                   <Link
@@ -519,7 +551,7 @@ export default function Navbar() {
                 {/* Quick Contact & Map info */}
                 <div className="pt-4 mt-3 border-t border-gray-100 space-y-2.5">
                   <a
-                    href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                    href="https://maps.app.goo.gl/oufr6JWcfzDFbchv7"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"

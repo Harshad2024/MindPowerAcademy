@@ -243,7 +243,7 @@ export default function ContactUs() {
               Hubballi, Karnataka 580031
             </p>
             <a
-              href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+              href="https://maps.app.goo.gl/oufr6JWcfzDFbchv7"
               target="_blank"
               rel="noreferrer"
               className="text-xs font-semibold bg-white/20 hover:bg-white hover:text-blue-700 px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
@@ -404,7 +404,7 @@ export default function ContactUs() {
                 📍 Vidya Nagar, Rajnagar, Hubballi, Karnataka 580031
               </span>
               <a
-                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                href="https://maps.app.goo.gl/oufr6JWcfzDFbchv7"
                 target="_blank"
                 rel="noreferrer"
                 className="px-3 py-1.5 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors font-semibold shrink-0"

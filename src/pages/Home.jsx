@@ -4,6 +4,7 @@ import About from '../components/About';
 import Courses from '../components/Courses';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Testimonials from '../components/Testimonials';
+import DigitalMarketingBanner from '../components/DigitalMarketingBanner';
 import FAQ from '../components/FAQ';
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Courses />
       <WhyChooseUs />
       <Testimonials />
+      <DigitalMarketingBanner />
       <FAQ />
     </main>
   );
