@@ -26,7 +26,7 @@ export default function App() {
           v7_relativeSplatPath: true,
         }}
       >
-        <div className="flex flex-col min-h-screen text-gray-800 bg-white selection:bg-primary selection:text-white overflow-x-hidden">
+        <div className="flex flex-col min-h-screen text-gray-800 bg-white selection:bg-primary selection:text-white overflow-x-clip">
           <ScrollToTop />
           <Navbar />
 

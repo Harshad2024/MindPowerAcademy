@@ -58,31 +58,31 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 md:py-24">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="max-w-3xl"
         >
-          <span className="inline-block py-1 px-3 sm:px-4 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 font-semibold text-[11px] sm:text-xs tracking-wide sm:tracking-wider uppercase mb-4 max-w-full">
+          <span className="inline-block py-1 px-3 sm:px-4 rounded-full bg-blue-500/25 border border-blue-400/50 text-blue-200 font-semibold text-[11px] sm:text-xs tracking-wide sm:tracking-wider uppercase mb-4 max-w-full">
             Personality Development &amp; Handwriting Improvement
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-5">
             <span className="block text-white mb-2">Unlock Your True Potential with</span>
-            <span className="block text-primary drop-shadow-md">Mind Power Academy</span>
+            <span className="block text-blue-400 drop-shadow-md">Mind Power Academy</span>
           </h1>
-          <p className="text-white/90 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-xl leading-relaxed">
+          <p className="text-white/90 text-sm sm:text-base md:text-lg mb-7 sm:mb-9 max-w-xl leading-relaxed">
             Discover transformative courses designed to enhance your handwriting, boost your confidence, sharpen your memory, and empower you for lifelong success.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-xs sm:max-w-md">
             <Link
               to="/contact-us/"
-              className="btn-primary text-sm sm:text-base px-8 py-3.5 shadow-lg hover:shadow-blue-500/30 uppercase tracking-wider text-center"
+              className="px-7 py-3 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase text-center text-white bg-primary hover:bg-blue-700 shadow-md transition-all"
             >
               Contact Us
             </Link>
             <Link
               to="/courses/"
-              className="btn-outline text-sm sm:text-base px-8 py-3.5 text-white border-white hover:bg-white hover:text-gray-900 uppercase tracking-wider text-center"
+              className="px-7 py-3 rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase text-center text-white border-2 border-white hover:bg-white hover:text-gray-900 transition-all"
             >
               Courses
             </Link>
@@ -91,7 +91,7 @@ export default function Hero() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
         {SLIDES.map((_, index) => (
           <button
             key={index}
@@ -100,18 +100,11 @@ export default function Hero() {
             aria-label={`Go to slide ${index + 1}`}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? 'bg-white scale-110'
-                : 'bg-white/40 hover:bg-white/60'
+                ? 'bg-white scale-110 shadow-sm'
+                : 'bg-white/40 hover:bg-white/70'
             }`}
           />
         ))}
-      </div>
-
-      {/* Bottom subtle curve decoration */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-[2]">
-        <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-8 md:h-12">
-          <path d="M0 48H1440V15C1080 48 360 0 0 30V48Z" fill="#F8FAFC" />
-        </svg>
       </div>
     </section>
   );

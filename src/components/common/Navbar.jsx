@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { FiMail, FiPhone, FiMenu, FiX, FiChevronDown, FiArrowRight } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMail, FiPhone, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import { FaInstagram, FaFacebookF, FaYoutube, FaWhatsapp, FaMapMarkerAlt } from 'react-icons/fa';
 import { COURSES_DATA } from '../../data/coursesData';
 
@@ -12,8 +13,8 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -23,6 +24,27 @@ export default function Navbar() {
     setCoursesOpen(false);
     setWorkshopOpen(false);
   }, [location.pathname]);
+
+  // Lock body scroll when mobile sidebar is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  // Close sidebar on Escape key
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
 
   const isContactActive =
     location.pathname === '/contact-us' ||
@@ -43,8 +65,12 @@ export default function Navbar() {
 
   return (
     <header className="w-full sticky top-0 z-50">
-      {/* Top Info Bar */}
-      <div className="bg-primary text-white text-xs md:text-sm font-medium">
+      {/* Top Info Bar (Hides on mobile scroll to save screen space) */}
+      <div
+        className={`bg-primary text-white text-xs md:text-sm font-medium transition-all duration-200 ${
+          scrolled ? 'hidden md:block' : 'block'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-6 min-w-0 flex-1">
             <a
@@ -120,16 +146,16 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav
         className={`bg-white transition-all duration-300 ${
-          scrolled ? 'shadow-md py-2.5' : 'shadow-sm py-3.5'
+          scrolled ? 'shadow-md py-2' : 'shadow-sm py-2.5 sm:py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo (Increased size on mobile & desktop) */}
           <Link to="/" className="flex items-center gap-3">
             <img
               src="/images/logo.png"
               alt="Mind Power Academy"
-              className="h-12 md:h-14 w-auto object-contain"
+              className="h-14 sm:h-16 md:h-16 w-auto object-contain transition-all"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -280,168 +306,264 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Blue square icon button matching official site */}
           <button
             type="button"
-            className="md:hidden text-2xl text-gray-800 p-2 focus:outline-none"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle navigation menu"
+            className="md:hidden w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center shadow-md hover:bg-blue-800 transition-colors focus:outline-none shrink-0"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation menu"
           >
-            {mobileOpen ? <FiX /> : <FiMenu />}
+            <FiMenu className="text-2xl" />
           </button>
         </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 shadow-xl space-y-3 max-h-[calc(100vh-80px)] overflow-y-auto">
-            <Link
-              to="/"
-              onClick={() => setMobileOpen(false)}
-              className={`block py-2 text-base font-semibold ${
-                isHomeActive ? 'text-primary font-bold' : 'text-gray-700'
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about-us/"
-              onClick={() => setMobileOpen(false)}
-              className={`block py-2 text-base font-semibold ${
-                isAboutActive ? 'text-primary font-bold' : 'text-gray-700'
-              }`}
-            >
-              About Us
-            </Link>
-            <div>
-              <button
-                type="button"
-                className={`w-full flex justify-between items-center py-2 text-base font-semibold ${
-                  isCoursesActive ? 'text-primary font-bold' : 'text-gray-700'
-                }`}
-                onClick={() => setCoursesOpen(!coursesOpen)}
-              >
-                <span>Courses</span>
-                <FiChevronDown className={`transition-transform ${coursesOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {coursesOpen && (
-                <div className="pl-4 space-y-1 pt-1 pb-2 border-l-2 border-primary/20 ml-2">
-                  <Link
-                    to="/courses/"
-                    onClick={() => setMobileOpen(false)}
-                    className={`block py-1.5 text-xs font-bold uppercase tracking-wider ${
-                      location.pathname === '/courses' || location.pathname === '/courses/'
-                        ? 'text-primary'
-                        : 'text-gray-500 hover:text-primary'
-                    }`}
-                  >
-                    All Courses Overview
-                  </Link>
-                  {COURSES_DATA.map((course) => (
-                    <Link
-                      key={course.slug}
-                      to={`/courses/${course.slug}/`}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block py-1 text-sm ${
-                        location.pathname.startsWith(`/courses/${course.slug}`)
-                          ? 'text-primary font-bold'
-                          : 'text-gray-700 hover:text-primary'
-                      }`}
-                    >
-                      {course.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div>
-              <button
-                type="button"
-                className={`w-full flex justify-between items-center py-2 text-base font-semibold ${
-                  isWorkshopsActive ? 'text-primary font-bold' : 'text-gray-700'
-                }`}
-                onClick={() => setWorkshopOpen(!workshopOpen)}
-              >
-                <span>Workshops</span>
-                <FiChevronDown className={workshopOpen ? 'rotate-180' : ''} />
-              </button>
-              {workshopOpen && (
-                <div className="pl-4 space-y-2 pt-1 border-l-2 border-primary/20 ml-2">
-                  <Link
-                    to="/upcoming-events/"
-                    onClick={() => setMobileOpen(false)}
-                    className={`block py-1 text-sm ${
-                      location.pathname.startsWith('/upcoming-events')
-                        ? 'text-primary font-bold'
-                        : 'text-gray-600 hover:text-primary'
-                    }`}
-                  >
-                    Upcoming Events
-                  </Link>
-                  <Link
-                    to="/past-events/"
-                    onClick={() => setMobileOpen(false)}
-                    className={`block py-1 text-sm ${
-                      location.pathname.startsWith('/past-events') || location.pathname.startsWith('/gallery')
-                        ? 'text-primary font-bold'
-                        : 'text-gray-600 hover:text-primary'
-                    }`}
-                  >
-                    Past Events
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <Link
-              to="/contact-us/"
-              onClick={() => setMobileOpen(false)}
-              className={`block py-2 text-base font-semibold ${
-                isContactActive ? 'text-primary font-bold' : 'text-gray-700'
-              }`}
-            >
-              Contact Us
-            </Link>
-
-            <div className="pt-2">
-              <Link
-                to="/contact-us/"
-                onClick={() => setMobileOpen(false)}
-                className="block text-center w-full py-3 rounded-full font-bold text-sm tracking-wide bg-primary text-white shadow-md uppercase"
-              >
-                Enroll Now
-              </Link>
-            </div>
-
-            {/* Quick Contact & Map for Mobile */}
-            <div className="pt-4 mt-2 border-t border-gray-100 space-y-2.5">
-              <a
-                href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
-              >
-                <FaMapMarkerAlt className="text-red-500 text-base shrink-0" />
-                <span>Locate on Google Maps</span>
-              </a>
-              <a
-                href="tel:+919844856288"
-                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
-              >
-                <FiPhone className="text-primary text-base shrink-0" />
-                <span>+91 98448 56288</span>
-              </a>
-              <a
-                href="mailto:mindpoweracademy77@gmail.com"
-                className="flex items-center gap-2.5 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1 break-all"
-              >
-                <FiMail className="text-primary text-base shrink-0" />
-                <span>mindpoweracademy77@gmail.com</span>
-              </a>
-            </div>
-          </div>
-        )}
       </nav>
+
+      {/* Mobile Sidebar Navigation (Slide-Over Drawer UI) */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              key="mobile-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden="true"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.aside
+              key="mobile-sidebar"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 260 }}
+              className="fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[85vw] bg-white z-[60] shadow-2xl flex flex-col md:hidden"
+              aria-label="Mobile Navigation"
+            >
+              {/* Sidebar Header */}
+              <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-slate-50">
+                <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                  <img
+                    src="/images/logo.png"
+                    alt="Mind Power Academy"
+                    className="h-11 w-auto object-contain"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-10 h-10 rounded-xl bg-gray-200/80 hover:bg-gray-300 text-gray-700 flex items-center justify-center transition-colors focus:outline-none"
+                  aria-label="Close navigation menu"
+                >
+                  <FiX className="text-xl" />
+                </button>
+              </div>
+
+              {/* Sidebar Links (Scrollable) */}
+              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
+                <Link
+                  to="/"
+                  onClick={() => setMobileOpen(false)}
+                  className={`block py-2 text-base font-semibold transition-colors ${
+                    isHomeActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/about-us/"
+                  onClick={() => setMobileOpen(false)}
+                  className={`block py-2 text-base font-semibold transition-colors ${
+                    isAboutActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  About Us
+                </Link>
+
+                {/* Courses Accordion in Sidebar */}
+                <div>
+                  <button
+                    type="button"
+                    className={`w-full flex justify-between items-center py-2 text-base font-semibold transition-colors ${
+                      isCoursesActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                    }`}
+                    onClick={() => setCoursesOpen(!coursesOpen)}
+                  >
+                    <span>Courses</span>
+                    <FiChevronDown
+                      className={`transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {coursesOpen && (
+                    <div className="pl-3 space-y-1.5 pt-1 pb-2 border-l-2 border-primary/20 ml-2">
+                      <Link
+                        to="/courses/"
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-1 text-xs font-bold uppercase tracking-wider ${
+                          location.pathname === '/courses' || location.pathname === '/courses/'
+                            ? 'text-primary'
+                            : 'text-gray-500 hover:text-primary'
+                        }`}
+                      >
+                        All Courses Overview
+                      </Link>
+                      {COURSES_DATA.map((course) => (
+                        <Link
+                          key={course.slug}
+                          to={`/courses/${course.slug}/`}
+                          onClick={() => setMobileOpen(false)}
+                          className={`block py-1 text-sm ${
+                            location.pathname.startsWith(`/courses/${course.slug}`)
+                              ? 'text-primary font-bold'
+                              : 'text-gray-700 hover:text-primary'
+                          }`}
+                        >
+                          {course.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Workshops Accordion in Sidebar */}
+                <div>
+                  <button
+                    type="button"
+                    className={`w-full flex justify-between items-center py-2 text-base font-semibold transition-colors ${
+                      isWorkshopsActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                    }`}
+                    onClick={() => setWorkshopOpen(!workshopOpen)}
+                  >
+                    <span>Workshops</span>
+                    <FiChevronDown
+                      className={`transition-transform duration-200 ${workshopOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  {workshopOpen && (
+                    <div className="pl-3 space-y-1.5 pt-1 pb-2 border-l-2 border-primary/20 ml-2">
+                      <Link
+                        to="/upcoming-events/"
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-1 text-sm ${
+                          location.pathname.startsWith('/upcoming-events')
+                            ? 'text-primary font-bold'
+                            : 'text-gray-600 hover:text-primary'
+                        }`}
+                      >
+                        Upcoming Events
+                      </Link>
+                      <Link
+                        to="/past-events/"
+                        onClick={() => setMobileOpen(false)}
+                        className={`block py-1 text-sm ${
+                          location.pathname.startsWith('/past-events') || location.pathname.startsWith('/gallery')
+                            ? 'text-primary font-bold'
+                            : 'text-gray-600 hover:text-primary'
+                        }`}
+                      >
+                        Past Events &amp; Gallery
+                      </Link>
+                    </div>
+                  )}
+                </div>
+
+                <Link
+                  to="/contact-us/"
+                  onClick={() => setMobileOpen(false)}
+                  className={`block py-2 text-base font-semibold transition-colors ${
+                    isContactActive ? 'text-primary font-bold' : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  Contact Us
+                </Link>
+
+                {/* Enroll CTA */}
+                <div className="pt-2">
+                  <Link
+                    to="/contact-us/"
+                    onClick={() => setMobileOpen(false)}
+                    className="block text-center w-full py-3 rounded-full font-bold text-sm tracking-wide bg-primary text-white shadow-md uppercase hover:bg-blue-700 transition-colors"
+                  >
+                    Enroll Now
+                  </Link>
+                </div>
+
+                {/* Quick Contact & Map info */}
+                <div className="pt-4 mt-3 border-t border-gray-100 space-y-2.5">
+                  <a
+                    href="https://maps.app.goo.gl/FnsDkEs4osP6niS67"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
+                  >
+                    <FaMapMarkerAlt className="text-red-500 text-base shrink-0" />
+                    <span>Locate on Google Maps</span>
+                  </a>
+                  <a
+                    href="tel:+919844856288"
+                    className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1"
+                  >
+                    <FiPhone className="text-primary text-base shrink-0" />
+                    <span>+91 98448 56288</span>
+                  </a>
+                  <a
+                    href="mailto:mindpoweracademy77@gmail.com"
+                    className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-1 break-all"
+                  >
+                    <FiMail className="text-primary text-base shrink-0" />
+                    <span>mindpoweracademy77@gmail.com</span>
+                  </a>
+                </div>
+
+                {/* Social icons row inside sidebar */}
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-around text-xl text-gray-600">
+                  <a
+                    href="https://www.instagram.com/mindpower__academy/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Instagram"
+                    className="p-2 hover:text-pink-600 transition-colors"
+                  >
+                    <FaInstagram />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/share/1C62iHuPPo/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Facebook"
+                    className="p-2 hover:text-blue-600 transition-colors"
+                  >
+                    <FaFacebookF />
+                  </a>
+                  <a
+                    href="https://wa.me/919844856288"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="WhatsApp"
+                    className="p-2 text-[#25D366] hover:scale-110 transition-transform"
+                  >
+                    <FaWhatsapp />
+                  </a>
+                  <a
+                    href="https://youtube.com/@grammar_boost?si=vStE-cgJPdeMnUo0"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="YouTube"
+                    className="p-2 hover:text-red-600 transition-colors"
+                  >
+                    <FaYoutube />
+                  </a>
+                </div>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

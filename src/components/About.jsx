@@ -26,7 +26,7 @@ function StatCard({ value, suffix, label }) {
 
 export default function About() {
   return (
-    <section id="about" className="py-14 sm:py-20 bg-gray-50">
+    <section id="about" className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
@@ -49,7 +49,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mb-12 sm:mb-16 bg-white rounded-2xl sm:rounded-3xl shadow-lg p-4 sm:p-8"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 mb-12 sm:mb-16 bg-slate-50 border border-slate-200/60 rounded-2xl sm:rounded-3xl shadow-sm p-4 sm:p-8"
         >
           {stats.map((s) => (
             <StatCard key={s.label} {...s} />
